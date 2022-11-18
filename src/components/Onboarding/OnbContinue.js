@@ -1,0 +1,37 @@
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { connect, useDispatch } from "react-redux";
+import { setIsNotFirstLaunch } from "../../../features/onboardingSlice";
+
+export default OnbContinue = (props) => {
+  const dispatch = useDispatch();
+
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => dispatch(setIsNotFirstLaunch(props.isFirstLaunch))}
+    >
+      <Text style={styles.buttonText}>Continue</Text>
+    </TouchableOpacity>
+  );
+}
+
+const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    bottom: 70,
+    right: 10,
+    zIndex: 10,
+    marginHorizontal: 10,
+    backgroundColor: "#403FFC",
+    paddingVertical: 16,
+    paddingHorizontal: 30,
+    borderStyle: "solid",
+    borderRadius: 100,
+    borderWidth: 1,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: "#FFFFFF",
+  },
+});
