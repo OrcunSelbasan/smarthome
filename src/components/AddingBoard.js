@@ -1,18 +1,13 @@
 import { StyleSheet, View, Text, TouchableOpacity , Image } from "react-native";
 
 
-function AddingBoard({addingBoardProp}) {
+function AddingBoard() {
     
     return(
     <View style={styles.addingContainer}>
-
-        <View>
-            <Text style={styles.addToText}>Add to</Text>
-        </View>
-
         <View style={styles.roomNameContainer}>
             <View style={styles.nameContainer}>
-                <Text style={styles.nameContainerText}>Enter Room Name</Text>
+                <Text style={styles.nameContainerText}>Press Room to Add</Text>
             </View>
             <View style={styles.ImageContainer}>
                 <TouchableOpacity style={styles.images}>
@@ -43,19 +38,18 @@ const styles = StyleSheet.create({
     roomNameContainer: {
         marginVertical: 25,
         width: 330,
-        height: 100,
+        height: 150,
         backgroundColor: "#FFFFFF",
         borderRadius: 20
     },
     nameContainer: {
         flexDirection: "column",
         alignItems: 'center',
-
+        marginVertical: 15
     },
     nameContainerText: {
         fontSize: 22,
         color: "black",
-
     },
     ImageContainer: {
         flexDirection: "row",

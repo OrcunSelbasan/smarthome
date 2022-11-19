@@ -49,7 +49,7 @@ export const screenOptions = (route) => ({
     display:
       route.name === "Onboarding" || route.name === "SignIn" ? "none" : "block",
     paddingHorizontal: 5,
-    backgroundColor: "rgba(0,0,0,0)",
+    backgroundColor: "rgba(0,0,0,1)",
     position: "absolute",
     borderTopWidth: 0,
   },

@@ -1,33 +1,107 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import DeviceType from "../../components/DeviceType";
 import NameInput from "../../components/NameInput";
 import AddingBoard from "../../components/AddingBoard";
-import Colorbrightness from "../../components/Colorbrightness";
+import { Component } from "react";
+import CustomSwitchButton from "../../components/CustomSwitchButton";
+import Light from "./Light";
+import Window from "./Window";
+import AirHumidifier from "./AirHumidifier";
 
-const AddingDevice = () => {
-  return (
-    <View style={styles.makePadding}>
-      <View style={styles.addingNewDevice}>
-        <Text style={styles.addingNewDeviceText}> Add New Devices </Text>
+class AddingDevice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      type: "",
+      isAvailableScheme: false,
+      colors: {
+        red: false,
+        green: false,
+        blue: false,
+        white: false,
+        yellow: false,
+      },
+      remotePower: false,
+      sunlight: false,
+      smartlight: false,
+      window: false,
+      airHumidifier: false,
+    };
+  }
+
+  handleName = (value) => this.setState((state) => ({ ...state, name: value }));
+  handleType = (value) => this.setState((state) => ({ ...state, type: value }));
+  handleAvailability = (value) =>
+    this.setState((state) => ({ ...state, isAvailableScheme: value }));
+  handleColors = (key, value) =>
+    this.setState((state) => ({
+      ...state,
+      colors: { ...state.colors, [key]: value },
+    }));
+  handleRemotePower = (value) =>
+    this.setState((state) => ({ ...state, remotePower: value }));
+  handleSunlight = (value) =>
+    this.setState((state) => ({ ...state, sunlight: value }));
+  handleSmartlight = (value) =>
+    this.setState((state) => ({ ...state, smartlight: value }));
+  handleWindow = (value) =>
+    this.setState((state) => ({ ...state, window: value }));
+  handleAirHumidifier = (value) =>
+    this.setState((state) => ({ ...state, airHumidifier: value }));
+
+  render() {
+    console.log(this.state);
+    return (
+      <View style={styles.makePadding}>
+        <ScrollView>
+          <View style={styles.addingNewDevice}>
+            <Text style={styles.addingNewDeviceText}>Add New Device</Text>
+          </View>
+          <View style={styles.devicePropertiesContainer}>
+            <NameInput
+              onNameChange={this.handleName}
+              headerName={"Device Name"}
+              placeholder={"Enter the name of the device"}
+            />
+            <DeviceType
+              headerDevice={"Device Type"}
+              onTypeChange={this.handleType}
+            />
+            {this.state.type && (this.state.type === "LIGHT" ? (
+              <Light
+                handleAvailability={this.handleAvailability}
+                isAvailableScheme={this.state.isAvailableScheme}
+                handleColors={this.handleColors}
+                handleRemotePower={this.handleRemotePower}
+                remotePower={this.state.remotePower}
+                handleSunlight={this.handleSunlight}
+                handleSmartlight={this.handleSmartlight}
+              />
+            ) : this.state.type === "WINDOW" ? (
+              <Window handleWindow={this.handleWindow} />
+            ) : (
+              <AirHumidifier handleAirHumidifier={this.handleAirHumidifier} />
+            ))}
+
+          </View>
+          <View style={{ height: 120 }}></View>
+          {/* DO NOT ERASE, PREVENTS SCROLL MISBEHAVIOR */}
+        </ScrollView>
       </View>
-      <View style={styles.deviceProperitiesContainer}>
-        <NameInput headerName={"Device Name"} />
-        <DeviceType headerDevice={"Device Type"} />
-        <Colorbrightness headerColorbrightness={"Color/Brightness"} />
-        <AddingBoard />
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.touchableButton}>
-            <Text style={styles.buttonText}>Add Device</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   makePadding: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     paddingTop: 70,
     backgroundColor: "#020212",
     height: "100%",
@@ -38,14 +112,15 @@ const styles = StyleSheet.create({
   },
   addingNewDeviceText: {
     color: "#D9D6D9",
-    fontSize: 20,
+    fontSize: 24,
   },
-  deviceProperitiesContainer: {
-    marginTop: 15,
+  devicePropertiesContainer: {
+    marginTop: 25,
     flexDirection: "column",
     justifyContent: "flex-start",
   },
   buttonContainer: {
+    marginTop: 40,
     flexDirection: "column",
     alignItems: "center",
   },
