@@ -37,9 +37,9 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon }) => {
             <CustomBrightnessSlider />
           </View>
           <View style={styles.switchButtons}>
-            <CustomSwitchButton buttonName="Power" />
-            <CustomSwitchButton buttonName="Smart Light Mode" />
-            <CustomSwitchButton buttonName="Sunlight Effect" />
+            <CustomSwitchButton onSwitchChange={() => {}} fontSize={24} marginLeft={20} buttonName="Power" />
+            <CustomSwitchButton onSwitchChange={() => {}} fontSize={24} marginLeft={20} buttonName="Smart Light Mode" />
+            <CustomSwitchButton onSwitchChange={() => {}} fontSize={24} marginLeft={20} buttonName="Sunlight Effect" />
           </View>
         </View>
       </View>

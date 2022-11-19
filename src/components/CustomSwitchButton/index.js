@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Switch, View, Text, StyleSheet } from "react-native";
 
-const CustomSwitchButton = ({ buttonName }) => {
+const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange }) => {
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
+    onSwitchChange(!isEnabled); // ! TODO: MIGHT CAUSE BUG!!!
   };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.buttonName}>{buttonName}: </Text>
+      <Text style={{...styles.buttonName, marginLeft, fontSize }}>{buttonName}: </Text>
       <Switch
         trackColor={{ false: "#FF6953", true: "#57E7CB" }}
         thumbColor={isEnabled ? "white" : "#FF6953"}
@@ -26,10 +28,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonName: {
-    fontSize: 24,
     fontWeight: "bold",
     color: "#D9D6D9",
-    marginLeft: 20,
     width: "75%",
   },
 });
