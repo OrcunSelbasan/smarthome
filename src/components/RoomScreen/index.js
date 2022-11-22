@@ -3,8 +3,10 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import CustomDropdown from "../CustomDropdown";
 import CustomBrightnessSlider from "../CustomBrightnessSlider";
 import CustomSwitchButton from "../CustomSwitchButton";
+import RoomSettings from "../RoomSettings";
 
-const RoomScreen = ({ username, bleStatus, img, title, setIcon }) => {
+const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
+
   return (
     <View style={styles.container}>
       <View style={styles.roomScreen}>
@@ -31,7 +33,7 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon }) => {
             <View style={styles.dropdown}>
               <CustomDropdown />
             </View>
-            <Image style={styles.settingsIcon} source={setIcon}></Image>
+            <RoomSettings {...props} setIcon={setIcon} />
           </View>
           <View style={styles.brightLevel}>
             <CustomBrightnessSlider />
@@ -123,10 +125,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 20,
     flexDirection: "row",
-  },
-  settingsIcon: {
-    marginTop: 30,
-    marginLeft: 120,
   },
   brightLevel: {
     alignItems: "center",

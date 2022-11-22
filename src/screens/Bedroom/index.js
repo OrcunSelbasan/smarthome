@@ -5,9 +5,9 @@ import bedroomIcon from "../../../assets/images/bedroomIcon.png";
 import settingsIcon from "../../../assets/images/settingsIcon.png";
 import { useSelector } from "react-redux";
 
-const Bedroom = () => {
+const Bedroom = (props) => {
   const userCredential = useSelector((state) => state.login);
-
+ 
   return (
     <View style={styles.container}>
       <RoomScreen
@@ -16,6 +16,7 @@ const Bedroom = () => {
         img={bedroomIcon}
         title="Bedroom"
         setIcon={settingsIcon}
+        {...props}
       />
     </View>
   );
