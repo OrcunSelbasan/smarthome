@@ -27,7 +27,6 @@ function ColorSchemeAvailability({ headerColor, onAvailabilityChange }) {
 
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
-    console.log(radioButtonsArray);
     const selectedOption = radioButtonsArray.find((opt) => opt.selected);
     onAvailabilityChange(selectedOption.label === "Yes" ? true : false);
   }

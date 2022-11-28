@@ -1,16 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const CustomBrightnessSlider = (props) => {
-  const [range, setRange] = useState(50);
+const HumidityLevel = () => {
+  const [range, setRange] = useState(300);
 
   return (
     <View style={styles.container}>
       <View style={styles.compositeStat}>
-        <View>
-          <Text style={styles.text}>Brightness: {range}%</Text>
+        <View style={styles.compositeText}>
+          <Text style={styles.text}>Humidity: {range}</Text>
         </View>
         <View style={styles.brightLevelBar}>
           <Slider
@@ -21,7 +20,7 @@ const CustomBrightnessSlider = (props) => {
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
             value={0.5}
-            onValueChange={(value) => setRange(parseInt(value * 100))}
+            onValueChange={(value) => setRange(parseInt(value * 1000))}
           />
         </View>
       </View>
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 340,
     height: 50,
+    marginVertical: 20
   },
   compositeStat: {
     flexDirection: "row",
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomBrightnessSlider;
+export default HumidityLevel;

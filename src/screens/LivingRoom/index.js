@@ -7,13 +7,15 @@ import { useSelector } from "react-redux";
 
 const LivingRoom = (props) => {
   const userCredential = useSelector((state) => state.login);
-  
+
   return (
     <View style={styles.container}>
       <RoomScreen
-        username={userCredential.user.username[0].toUpperCase()}
+        functionalities={userCredential.rooms.livingroom}
+        username={userCredential.user.username}
         bleStatus="BLE ON"
         img={livingIcon}
+        colors={[]}
         title="Living Room"
         setIcon={settingsIcon}
         {...props}
@@ -25,8 +27,8 @@ const LivingRoom = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 export default LivingRoom;

@@ -57,7 +57,6 @@ class AddingDevice extends Component {
     this.setState((state) => ({ ...state, airHumidifier: value }));
 
   render() {
-    console.log(this.state);
     return (
       <View style={styles.makePadding}>
         <ScrollView>

@@ -10,8 +10,8 @@ import {
   APP_ID,
   MEASUREMENT_ID,
 } from "@env";
+import { getFirestore } from "firebase/firestore";
 // import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
 // import {...} from "firebase/functions";
 // import {...} from "firebase/storage";
 
@@ -28,3 +28,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
