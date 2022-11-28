@@ -38,8 +38,10 @@ class AddingDevice extends Component {
 
   handleName = (value) => this.setState((state) => ({ ...state, name: value }));
   handleType = (value) => this.setState((state) => ({ ...state, type: value }));
+
   handleAvailability = (value) =>
     this.setState((state) => ({ ...state, isAvailableScheme: value }));
+    
   handleColors = (key, value) =>
     this.setState((state) => ({
       ...state,
@@ -74,22 +76,23 @@ class AddingDevice extends Component {
               headerDevice={"Device Type"}
               onTypeChange={this.handleType}
             />
-            {this.state.type && (this.state.type === "LIGHT" ? (
-              <Light
-                handleAvailability={this.handleAvailability}
-                isAvailableScheme={this.state.isAvailableScheme}
-                handleColors={this.handleColors}
-                handleRemotePower={this.handleRemotePower}
-                remotePower={this.state.remotePower}
-                handleSunlight={this.handleSunlight}
-                handleSmartlight={this.handleSmartlight}
-              />
-            ) : this.state.type === "WINDOW" ? (
-              <Window handleWindow={this.handleWindow} />
-            ) : (
-              <AirHumidifier handleAirHumidifier={this.handleAirHumidifier} />
-            ))}
-
+            {this.state.type &&
+              (this.state.type === "LIGHT" ? (
+                <Light
+                  handleAvailability={this.handleAvailability}
+                  isAvailableScheme={this.state.isAvailableScheme}
+                  handleColors={this.handleColors}
+                  handleRemotePower={this.handleRemotePower}
+                  remotePower={this.state.remotePower}
+                  handleSunlight={this.handleSunlight}
+                  handleSmartlight={this.handleSmartlight}
+                />
+              ) : this.state.type === "WINDOW" ? (
+                <Window handleWindow={this.handleWindow} />
+              ) : (
+                <AirHumidifier handleAirHumidifier={this.handleAirHumidifier} />
+              ))}
+            <AddingBoard />
           </View>
           <View style={{ height: 120 }}></View>
           {/* DO NOT ERASE, PREVENTS SCROLL MISBEHAVIOR */}
