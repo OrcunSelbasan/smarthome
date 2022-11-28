@@ -11,7 +11,6 @@ export default function Window(props) {
         fontSize={20}
         onSwitchChange={props.handleWindow}
       /> */}
-      <AddingBoard />
     </>
   );
 }

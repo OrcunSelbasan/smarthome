@@ -1,10 +1,10 @@
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
-function Addbutton({ buttonName }) {
+function CancelButton() {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.touchableButton}>
-        <Text style={styles.buttonText}>{buttonName}</Text>
+        <Text style={styles.buttonText}>Cancel</Text>
       </TouchableOpacity>
     </View>
   );
@@ -13,24 +13,24 @@ function Addbutton({ buttonName }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   touchableButton: {
-    width: 250,
-    height: 50,
+    width: 100,
+    height: 40,
     textAlign: "center",
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#5857F3",
+    backgroundColor: "#FF6953",
     alignItems: "center",
-    borderRadius: 40,
+    borderRadius: 20,
   },
 
   buttonText: {
-    fontSize: 22,
-    color: "#D9D6D9",
-    fontWeight: "bold",
-  },
+    fontSize: 20,
+    color: "black",
+    fontWeight: "bold"
+  }
 });
 
-export default Addbutton;
+export default CancelButton;

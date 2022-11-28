@@ -37,7 +37,6 @@ export default function Light(props) {
           />
         </>
       )}
-      <AddingBoard />
     </>
   );
 }

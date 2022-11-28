@@ -11,7 +11,6 @@ export default function AirHumidifier(props) {
         fontSize={20}
         onSwitchChange={props.handleAirHumidifier}
       />
-      <AddingBoard />
     </>
   );
 }
