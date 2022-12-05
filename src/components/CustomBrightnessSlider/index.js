@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 
 const CustomBrightnessSlider = (props) => {
-  const [range, setRange] = useState(50);
+  const [range, setRange] = useState(props.brightnessLevel ?? 0);
 
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ const CustomBrightnessSlider = (props) => {
             minimumTrackTintColor="#5857F3"
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
-            value={0.5}
+            value={range}
             onValueChange={(value) => setRange(parseInt(value * 100))}
           />
         </View>

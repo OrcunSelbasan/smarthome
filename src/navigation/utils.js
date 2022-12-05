@@ -45,7 +45,7 @@ export const renderApp = () => (
     <Tab.Screen
       name="AddDevice"
       component={AddingDevice}
-      options={{ title: "Add Device" }}
+      options={{ title: "Devices" }}
     />
     <Tab.Screen
       name="Modes"
@@ -73,7 +73,7 @@ export const Modes = (props) => {
       }}
     >
       <Stack.Screen
-        name="Modes"
+        name="ModesList"
         options={{
           title: "Modes",
           ...modesScreenOptions,

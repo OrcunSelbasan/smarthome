@@ -15,7 +15,6 @@ const Bedroom = (props) => {
         username={userCredential.user.uid}
         bleStatus="BLE ON"
         img={bedroomIcon}
-        colors={[]}
         title="Bedroom"
         setIcon={settingsIcon}
         {...props}

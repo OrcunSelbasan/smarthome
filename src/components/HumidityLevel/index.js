@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 
-const HumidityLevel = () => {
-  const [range, setRange] = useState(300);
+const HumidityLevel = ({rangeValue}) => {
+  const [range, setRange] = useState(rangeValue ?? 0);
 
   return (
     <View style={styles.container}>
       <View style={styles.compositeStat}>
-        <View style={styles.compositeText}>
+        <View>
           <Text style={styles.text}>Humidity: {range}</Text>
         </View>
         <View style={styles.brightLevelBar}>
@@ -19,7 +19,7 @@ const HumidityLevel = () => {
             minimumTrackTintColor="#5857F3"
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
-            value={0.5}
+            value={range ?? 0}
             onValueChange={(value) => setRange(parseInt(value * 1000))}
           />
         </View>

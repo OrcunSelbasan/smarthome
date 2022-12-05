@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Switch, View, Text, StyleSheet } from "react-native";
 
-const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-
+const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange, isEnabledButton, room }) => {
+  const [isEnabled, setIsEnabled] = useState(isEnabledButton ?? false);
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
-    onSwitchChange(!isEnabled); // ! TODO: MIGHT CAUSE BUG!!!
+    onSwitchChange(!isEnabled, room); // ! TODO: MIGHT CAUSE BUG!!!
   };
+
+  useEffect(() => {}, [isEnabledButton])
 
   return (
     <View style={styles.container}>
