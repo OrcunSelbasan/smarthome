@@ -55,6 +55,7 @@ const SignInScreen = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setIsLoading(false);
         setIsError(true);
         setErrorMessageBody(errorMessage);
         setErrorMessageHeader(errorCode);
@@ -69,7 +70,7 @@ const SignInScreen = () => {
         const livingroom = new Room().toObject();
         const bedroom = new Room().toObject();
         postRooms(rooms.uid, { livingroom, bedroom, password: "0000" });
-        return { livingroom: {}, bedroom: {}, password: "0000" };
+        return { livingroom, bedroom, password: "0000" };
       }
     });
   }

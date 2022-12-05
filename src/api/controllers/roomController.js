@@ -1,5 +1,5 @@
 import { db } from "../../../firebaseConfig";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 export const getRooms = async (uid) => {
   const docRef = doc(db, "rooms", uid);
@@ -19,5 +19,13 @@ export const getRooms = async (uid) => {
 };
 
 export const postRooms = async (uid, data) => {
-  await setDoc(doc(db, "rooms", uid), data);
-}
+  const docRef = doc(db, "rooms", uid);
+
+  await setDoc(docRef, data);
+};
+
+export const updateRooms = async (uid, data) => {
+  const docRef = doc(db, "rooms", uid);
+
+  await setDoc(docRef, data);
+};

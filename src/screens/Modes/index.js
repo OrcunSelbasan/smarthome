@@ -44,7 +44,7 @@ export default function Modes(props) {
       </View>
       <ScrollView style={{width: "100%"}}>
         {modes.map((m, i) => (
-          <View style={{width: "100%", alignItems: "center"}}>
+          <View key={i} style={{width: "100%", alignItems: "center"}}>
               <TouchableHighlight
                 onPress={() =>
                   props.navigation.navigate("InfoMode", {

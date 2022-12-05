@@ -22,19 +22,19 @@ const radioButtonsData = [
   },
 ];
 
-function ColorSchemeAvailability({ headerColor, onAvailabilityChange }) {
+function ColorSchemeAvailability({ headerColor, onAvailabilityChange, chosenOption, room }) {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
 
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
     const selectedOption = radioButtonsArray.find((opt) => opt.selected);
-    onAvailabilityChange(selectedOption.label === "Yes" ? true : false);
+    onAvailabilityChange(selectedOption.label === "Yes" ? true : false, room);
   }
-
+ 
   useEffect(() => {
     setRadioButtons([
-        {...radioButtonsData[0], selected: false},
-        {...radioButtonsData[1], selected: true}
+        {...radioButtonsData[0], selected: chosenOption},
+        {...radioButtonsData[1], selected: !chosenOption}
     ]);
   }, []);
 
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
   },
   deviceBrandText: {
     color: "#D9D6D9",
-    fontSize: 20,
-    fontWeight: "normal",
-    paddingBottom: 15,
+    fontSize: 24,
+    fontWeight: "bold",
+    paddingVertical: 15,
   },
   deviceBrandSelection: {
     color: "#D9D6D9",

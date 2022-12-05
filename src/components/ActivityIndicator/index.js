@@ -1,13 +1,18 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { string } from "prop-types";
 
-const Loading = (props) => {
+const Loading = ({ message }) => {
   return (
     <View style={styles.container}>
       <ActivityIndicator size="large" color="#57E7CB" />
-      <Text style={styles.text}>{props.message}</Text>
+      <Text style={styles.text}>{message}</Text>
     </View>
   );
+};
+
+Loading.propTypes = {
+  message: string.isRequired,
 };
 
 const styles = StyleSheet.create({
