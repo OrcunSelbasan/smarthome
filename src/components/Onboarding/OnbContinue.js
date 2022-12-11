@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setIsNotFirstLaunch } from "../../../features/onboardingSlice";
 
-export default OnbContinue = (props) => {
+const OnbContinue = (props) => {
   const dispatch = useDispatch();
 
   return (
@@ -35,3 +35,5 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
 });
+
+export default OnbContinue;

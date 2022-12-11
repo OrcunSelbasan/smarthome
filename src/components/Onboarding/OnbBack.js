@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default OnbBack = ({ ...props }) => (
+const OnbBack = ({ ...props }) => (
   <TouchableOpacity
     style={styles.button}
     onPress={() => props.onPageChange(props.pageIndex, "prev")}
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default OnbBack;

@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, View, Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
+import { func, string } from "prop-types";
 
 const CustomButton = ({ onPress, text }) => {
   return (
@@ -7,6 +8,11 @@ const CustomButton = ({ onPress, text }) => {
       <Text style={styles.text}> {text}</Text>
     </Pressable>
   );
+};
+
+CustomButton.propTypes = {
+  onPress: func,
+  text: string,
 };
 
 const styles = StyleSheet.create({

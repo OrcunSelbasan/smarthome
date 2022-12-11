@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default OnbNext = ({ ...props }) => (
+const OnbNext = ({ ...props }) => (
   <TouchableOpacity
     style={styles.button}
     {...props}
@@ -28,3 +28,5 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
 });
+
+export default OnbNext;

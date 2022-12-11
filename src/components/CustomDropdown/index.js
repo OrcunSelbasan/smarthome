@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { array } from "prop-types";
 
 const data = [
   { label: "Mode LR", value: "1" },
@@ -9,10 +10,9 @@ const data = [
   { label: "Mode DEFAULT", value: "4" },
 ];
 
-const CustomDropdown = () => {
-  const [value, setValue] = useState(null);
+const CustomDropdown = ({ modes }) => {
+  const [value, setValue] = useState("Custom");
   const [isFocus, setIsFocus] = useState(false);
-
   return (
     <View style={styles.container}>
       <Dropdown
@@ -21,12 +21,12 @@ const CustomDropdown = () => {
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={data}
+        data={modes ?? []}
         search
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={value}
+        placeholder="Custom"
         searchPlaceholder="Search mode"
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -38,6 +38,10 @@ const CustomDropdown = () => {
       />
     </View>
   );
+};
+
+CustomDropdown.propTypes = {
+  modes: array,
 };
 
 export default CustomDropdown;
@@ -68,6 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   placeholderStyle: {
+    color: "white",
     fontSize: 16,
   },
   selectedTextStyle: {

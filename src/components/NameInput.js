@@ -1,35 +1,43 @@
-import { StyleSheet, TextInput ,Text ,View } from "react-native";
+import { StyleSheet, TextInput, Text, View } from "react-native";
+import { string, func } from "prop-types";
 
-function NameInput({headerName}) {
-
-    return (
-        <View style={styles.deviceName}>
-            <Text style={styles.deviceNameText}>{headerName}</Text>
-            <TextInput style={styles.TextInputText}
-                placeholder='Enter Your Device Name'
-                placeholderTextColor="#FFF"
-            />
-        </View>
-    )
+function NameInput({ headerName, placeholder, onNameChange }) {
+  return (
+    <View style={styles.deviceName}>
+      <Text style={styles.deviceNameText}>{headerName}</Text>
+      <TextInput
+        style={styles.TextInputText}
+        placeholder={placeholder}
+        placeholderTextColor="#FFF"
+        onChangeText={(text) => onNameChange(text)}
+      />
+    </View>
+  );
 }
 
+NameInput.propTypes = {
+  headerName: string,
+  placeholder: string,
+  onNameChange: func,
+};
+
 const styles = StyleSheet.create({
-    deviceName: {
-        width: 330,
-        borderBottomWidth: 1,
-        borderBottomColor: "#5857F3",
-        
-      },
-      deviceNameText:{
-        fontSize:20,
-        lineHeight:34,
-        color:'#D9D6D9'
-      },
-      TextInputText:{
-        fontSize:13,
-        color:'#D9D6D9',
-        
-      },
-})
+  deviceName: {
+    width: 330,
+    borderBottomWidth: 1,
+    paddingBottom: 10,
+    borderBottomColor: "#5857F3",
+  },
+  deviceNameText: {
+    fontSize: 20,
+    lineHeight: 34,
+    color: "#D9D6D9",
+  },
+  TextInputText: {
+    fontSize: 18,
+    color: "#D9D6D9",
+    paddingTop: 15,
+  },
+});
 
 export default NameInput;
