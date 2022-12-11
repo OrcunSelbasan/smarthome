@@ -10,6 +10,7 @@ import ModesScreen from "../screens/Modes";
 import OnboardingScreen from "../screens/Onboarding";
 import SignInScreen from "../screens/SignInScreen";
 import InfoMode from "../screens/Modes/InfoMode";
+import Password from "../screens/Password";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -47,11 +48,16 @@ export const renderApp = () => (
       component={AddingDevice}
       options={{ title: "Devices" }}
     />
-    <Tab.Screen
+    <Tab.Screen 
+      name="Password"
+      component={Password}
+      options={{ title: "Password" }}
+    />
+    {/* <Tab.Screen
       name="Modes"
       component={Modes}
       options={{ title: "Modes", unmountOnBlur: true }}
-    />
+    /> */}
   </>
 );
 

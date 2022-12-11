@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import { func } from "prop-types";
 
-function AddingBoard({ onRoomChange }) {
-  const [selectedRoom, setSelectedRoom] = useState("livingroom");
+const AddingBoard = ({ onRoomChange }) => {
+  const [selectedRoom, setSelectedRoom] = useState("bedroom");
 
   function setStyle(roomName) {
     return selectedRoom === roomName
@@ -22,17 +23,27 @@ function AddingBoard({ onRoomChange }) {
           <Text style={styles.nameContainerText}>Selected Room</Text>
         </View>
         <View style={styles.ImageContainer}>
-          <TouchableOpacity onPress={() => changeRoom("livingroom")} style={setStyle("livingroom")}>
+          <TouchableOpacity
+            onPress={() => changeRoom("bedroom")}
+            style={setStyle("bedroom")}
+          >
             <Image source={require("../../assets/bed-1.png")} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => changeRoom("bedroom")} style={setStyle("bedroom")}>
+          <TouchableOpacity
+            onPress={() => changeRoom("livingroom")}
+            style={setStyle("livingroom")}
+          >
             <Image source={require("../../assets/sofa-1.png")} />
           </TouchableOpacity>
         </View>
       </View>
     </View>
   );
-}
+};
+
+AddingBoard.propTypes = {
+  onRoomChange: func,
+};
 
 const styles = StyleSheet.create({
   addingContainer: {

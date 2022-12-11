@@ -9,6 +9,7 @@ export default function Window(props) {
         onSwitchChange={props.handleWindow}
         isEnabledButton={props.isEnabledButton}
         fontSize={20}
+        style={{ fontSize: 20 }}
         room={props.room}
       />
     </>

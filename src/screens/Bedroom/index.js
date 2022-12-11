@@ -12,7 +12,7 @@ const Bedroom = (props) => {
     <View style={styles.container}>
       <RoomScreen
         functionalities={userCredential.rooms.bedroom}
-        username={userCredential.user.uid}
+        username={userCredential.user.username}
         bleStatus="BLE ON"
         img={bedroomIcon}
         title="Bedroom"

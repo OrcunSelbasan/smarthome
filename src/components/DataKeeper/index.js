@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+
 const DataKeeper = () => {
   const currentDate = new Date().toLocaleDateString();
 
   const [time, setTime] = useState(currentDate);
+
   return (
     <View style={styles.container}>
       <Text style={styles.dailyDate}>{time}</Text>

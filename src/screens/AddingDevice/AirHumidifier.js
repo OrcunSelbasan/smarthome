@@ -7,16 +7,14 @@ export default function AirHumidifier(props) {
       <CustomSwitchButton
         isEnabledButton={props.data.airHumidifier}
         buttonName={"Enable Air Humidifier"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         onSwitchChange={props.handleAirHumidifier}
         room={props.room}
       />
       <CustomSwitchButton
         isEnabledButton={props.data.adjustableAirHumidifier}
         buttonName={"Adjustable Air Humidifier"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         onSwitchChange={props.handleAdjustableAirHumidifier}
         room={props.room}
       />

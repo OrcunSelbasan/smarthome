@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { array } from "prop-types";
 
 const data = [
   { label: "Mode LR", value: "1" },
@@ -9,10 +10,9 @@ const data = [
   { label: "Mode DEFAULT", value: "4" },
 ];
 
-const CustomDropdown = ({modes}) => {
+const CustomDropdown = ({ modes }) => {
   const [value, setValue] = useState("Custom");
   const [isFocus, setIsFocus] = useState(false);
-
   return (
     <View style={styles.container}>
       <Dropdown
@@ -38,6 +38,10 @@ const CustomDropdown = ({modes}) => {
       />
     </View>
   );
+};
+
+CustomDropdown.propTypes = {
+  modes: array,
 };
 
 export default CustomDropdown;

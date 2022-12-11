@@ -3,8 +3,13 @@ import { StyleSheet, Text, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { func, bool, array } from "prop-types";
 
-export default function ColorScheme({ onColorSelect, isOnRoom, colors, checkedColors, room }) {
-  // TODO: USE PROPS FOR DYNAMIC COLOR SELECT
+const ColorScheme = ({
+  onColorSelect,
+  isOnRoom,
+  colors,
+  checkedColors,
+  room,
+}) => {
   return (
     <View style={styles.colorScheme}>
       {isOnRoom ? null : (
@@ -30,7 +35,7 @@ export default function ColorScheme({ onColorSelect, isOnRoom, colors, checkedCo
       </View>
     </View>
   );
-}
+};
 
 ColorScheme.propTypes = {
   onColorSelect: func.isRequired,
@@ -54,3 +59,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
 });
+
+export default ColorScheme;

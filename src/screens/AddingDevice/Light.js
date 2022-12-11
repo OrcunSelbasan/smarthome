@@ -15,7 +15,9 @@ export default function Light(props) {
       {props.data.isAvailableScheme && (
         <ColorScheme
           colors={["red", "green", "blue", "white", "yellow"]}
-          checkedColors={Object.keys(props.data.colors).filter(c => props.data.colors[c])}
+          checkedColors={Object.keys(props.data.colors).filter(
+            (c) => props.data.colors[c]
+          )}
           isOnRoom={props.data.isAvailableScheme}
           onColorSelect={props.handleColors}
           room={props.room}
@@ -23,36 +25,32 @@ export default function Light(props) {
       )}
       <CustomSwitchButton
         buttonName={"Remote Power Options"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         isEnabledButton={props.data.remotePower}
         onSwitchChange={props.handleRemotePower}
         room={props.room}
       />
       <CustomSwitchButton
         buttonName={"Brightness Select"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         isEnabledButton={props.data.brightnessSelect}
         onSwitchChange={props.handleBrightnessOption}
         room={props.room}
       />
       <CustomSwitchButton
         buttonName={"Sunlight Effect"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         isEnabledButton={props.data.sunlight}
         onSwitchChange={props.handleSunlight}
         room={props.room}
       />
       <CustomSwitchButton
         buttonName={"Smart Light"}
-        marginLeft={0}
-        fontSize={20}
+        style={{ fontSize: 20, marginLeft: 0 }}
         isEnabledButton={props.data.smartlight}
         onSwitchChange={props.handleSmartlight}
         room={props.room}
-      />     
+      />
     </>
   );
 }

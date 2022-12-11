@@ -1,5 +1,5 @@
-import React from 'react';
-import { List } from 'react-native-paper';
+import React from "react";
+import { List } from "react-native-paper";
 
 const Accordion = () => {
   const [expanded, setExpanded] = React.useState(true);
@@ -10,9 +10,10 @@ const Accordion = () => {
     <List.Section title="">
       <List.Accordion
         title="Controlled Accordion"
-        left={props => <List.Icon {...props} icon="folder" />}
+        left={(props) => <List.Icon {...props} icon="folder" />}
         expanded={expanded}
-        onPress={handlePress}>
+        onPress={handlePress}
+      >
         <List.Item title="First item" />
         <List.Item title="Second item" />
       </List.Accordion>

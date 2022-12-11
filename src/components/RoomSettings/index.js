@@ -3,17 +3,19 @@ import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableHighlight } from "react-native";
 import Tooltip from "react-native-walkthrough-tooltip";
 
-export default function RoomSettings(props) {
+const RoomSettings = (props) => {
   const [toolTipVisible, setToolTipVisible] = useState(false);
 
   return (
     <Tooltip
       isVisible={toolTipVisible}
       content={
-        <TouchableHighlight onPress={() => {
+        <TouchableHighlight
+          onPress={() => {
             setToolTipVisible(false);
-            props.navigation.navigate("Modes", {screen: "EditMode"});
-        }} >
+            props.navigation.navigate("Modes", { screen: "EditMode" });
+          }}
+        >
           <Text>Go to edit</Text>
         </TouchableHighlight>
       }
@@ -35,7 +37,7 @@ export default function RoomSettings(props) {
       </TouchableHighlight>
     </Tooltip>
   );
-}
+};
 
 const styles = StyleSheet.create({
   settingsIcon: {
@@ -46,3 +48,5 @@ const styles = StyleSheet.create({
     color: "#D9D6D9",
   },
 });
+
+export default RoomSettings;
