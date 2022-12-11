@@ -1,12 +1,26 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
+import { string, func, bool } from "prop-types";
 
-const CustomInput = ({ placeholder, onInput, ...props }) => {
+const CustomInput = ({ placeholder, onInput, secureTextEntry }) => {
   return (
     <View style={styles.container}>
-      <TextInput placeholder={placeholder} style={styles.input} autoCorrect={false} autoCapitalize="none" onChangeText={(text) => onInput(text)} {...props}></TextInput>
+      <TextInput
+        placeholder={placeholder}
+        style={styles.input}
+        autoCorrect={false}
+        autoCapitalize="none"
+        onChangeText={(text) => onInput(text)}
+        secureTextEntry={secureTextEntry}
+      ></TextInput>
     </View>
   );
+};
+
+CustomInput.propTypes = {
+  placeholder: string,
+  onInput: func,
+  secureTextEntry: bool,
 };
 
 const styles = StyleSheet.create({
@@ -21,7 +35,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   input: {
-    fontSize: 16
+    fontSize: 16,
   },
 });
 

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import CustomDropdown from "../CustomDropdown";
 import CustomBrightnessSlider from "../CustomBrightnessSlider";
 import CustomSwitchButton from "../CustomSwitchButton";
-import RoomSettings from "../RoomSettings";
+// import RoomSettings from "../RoomSettings";
 import HumidityLevel from "../HumidityLevel";
 import Loading from "../ActivityIndicator";
 import DataKeeper from "../DataKeeper";
@@ -15,14 +15,17 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
   const dropdownData = data?.modes?.map((data, i) => ({
     label: data.name,
     value: i + 1,
-    ...data
+    ...data,
   }));
   return data ? (
     <View style={styles.container}>
       <View style={styles.roomScreen}>
         <View style={styles.headerComposite}>
           <View style={styles.usernameCircle}>
-            <ProfileIcon username={username} style={{username: styles.username}} />
+            <ProfileIcon
+              username={username}
+              style={{ username: styles.username }}
+            />
           </View>
           <View style={styles.bleBar}>
             <Text style={styles.bleText}>{bleStatus}</Text>
@@ -37,16 +40,24 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
           <Text style={styles.pageTitle}>{title}</Text>
         </View>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ borderTopStartRadius: 25, borderTopEndRadius: 25 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ borderTopStartRadius: 25, borderTopEndRadius: 25 }}
+      >
         <View style={styles.test}>
           <View style={styles.bodyContainer}>
             <View style={styles.bodyHeader}>
               <View style={styles.dropdown}>
                 <CustomDropdown modes={dropdownData} />
               </View>
-              <RoomSettings {...props} setIcon={setIcon} />
+              {/* <RoomSettings {...props} setIcon={setIcon} /> */}
             </View>
-            {data?.colorSelect.isAvailable && <LightColorPicker isOnRoom={true} colors={data?.colorSelect.colors} />}
+            {data?.colorSelect.isAvailable && (
+              <LightColorPicker
+                isOnRoom={true}
+                colors={data?.colorSelect.colors}
+              />
+            )}
             <BrightnessComponent condition={data?.brightnessSelect.isAvailable}>
               <CustomBrightnessSlider />
             </BrightnessComponent>
@@ -77,8 +88,12 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
                 isEnabledButton={data?.humidifierSelect.isEnabled}
               />
             </View>
-            <BrightnessComponent condition={data?.humidifierAdjustmentSelect.isAvailable}>
-              <HumidityLevel range={data?.humidifierAdjustmentSelect.humidityLevel} />
+            <BrightnessComponent
+              condition={data?.humidifierAdjustmentSelect.isAvailable}
+            >
+              <HumidityLevel
+                range={data?.humidifierAdjustmentSelect.humidityLevel}
+              />
             </BrightnessComponent>
             <DataKeeper />
           </View>
@@ -102,8 +117,7 @@ const SwitchComponent = ({ name, condition, isEnabledButton }) => {
     condition && (
       <CustomSwitchButton
         onSwitchChange={() => {}}
-        fontSize={24}
-        marginLeft={20}
+        style={{ fontSize: 24, marginLeft: 20 }}
         buttonName={name}
         isEnabledButton={isEnabledButton}
       />

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Switch, View, Text, StyleSheet } from "react-native";
+import { string, func, bool, any, object } from "prop-types";  
 
-const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange, isEnabledButton, room }) => {
+const CustomSwitchButton = ({ buttonName, onSwitchChange, isEnabledButton, room, style }) => {
   const [isEnabled, setIsEnabled] = useState(isEnabledButton ?? false);
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
@@ -13,7 +14,7 @@ const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange, 
 
   return (
     <View style={styles.container}>
-      <Text style={{...styles.buttonName, marginLeft, fontSize }}>{buttonName}: </Text>
+      <Text style={{...styles.buttonName, ...style }}>{buttonName}: </Text>
       <Switch
         trackColor={{ false: "#FF6953", true: "#57E7CB" }}
         thumbColor={isEnabled ? "white" : "#FF6953"}
@@ -23,6 +24,14 @@ const CustomSwitchButton = ({ buttonName, marginLeft, fontSize, onSwitchChange, 
     </View>
   );
 };
+
+CustomSwitchButton.propTypes = {
+  buttonName: string,
+  onSwitchChange: func,
+  isEnabledButton: bool,
+  room: any,
+  style: object,
+}
 
 const styles = StyleSheet.create({
   container: {

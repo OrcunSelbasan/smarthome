@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import RadioGroup from "react-native-radio-buttons-group";
 import { useState } from "react";
 import { useEffect } from "react";
+import { string, bool, func } from "prop-types";
 
 const radioButtonsData = [
   {
@@ -22,19 +23,24 @@ const radioButtonsData = [
   },
 ];
 
-function ColorSchemeAvailability({ headerColor, onAvailabilityChange, chosenOption, room }) {
+const ColorSchemeAvailability = ({
+  headerColor,
+  onAvailabilityChange,
+  chosenOption,
+  room,
+}) => {
   const [radioButtons, setRadioButtons] = useState(radioButtonsData);
-
+  console.log(room);
   function onPressRadioButton(radioButtonsArray) {
     setRadioButtons(radioButtonsArray);
     const selectedOption = radioButtonsArray.find((opt) => opt.selected);
     onAvailabilityChange(selectedOption.label === "Yes" ? true : false, room);
   }
- 
+
   useEffect(() => {
     setRadioButtons([
-        {...radioButtonsData[0], selected: chosenOption},
-        {...radioButtonsData[1], selected: !chosenOption}
+      { ...radioButtonsData[0], selected: chosenOption },
+      { ...radioButtonsData[1], selected: !chosenOption },
     ]);
   }, []);
 
@@ -48,7 +54,14 @@ function ColorSchemeAvailability({ headerColor, onAvailabilityChange, chosenOpti
       />
     </View>
   );
-}
+};
+
+ColorSchemeAvailability.propTypes = {
+  headerColor: string,
+  onAvailabilityChange: func,
+  chosenOption: bool,
+  room: string,
+};
 
 const styles = StyleSheet.create({
   deviceBrand: {

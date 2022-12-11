@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CustomInput from "../../components/CustomInput";
 import CustomButton from "../../components/CustomButton";
-import ContinueWithButton from "../../components/ContinueWithButton";
-import googlelogo from "../../../assets/images/googlelogo.png";
-import microsoftlogo from "../../../assets/images/microsoftlogo.png";
+// import ContinueWithButton from "../../components/ContinueWithButton";
+// import googlelogo from "../../../assets/images/googlelogo.png";
+// import microsoftlogo from "../../../assets/images/microsoftlogo.png";
 import { useDispatch } from "react-redux";
 import { setLoggedIn } from "../../../features/loginSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -92,11 +92,11 @@ const SignInScreen = () => {
             <CustomButton onPress={() => login()} text="Log in" />
           </View>
           <View style={styles.continueWithBox}>
-            <ContinueWithButton img={googlelogo} text="Continue with Google" />
+            {/* <ContinueWithButton img={googlelogo} text="Continue with Google" />
             <ContinueWithButton
               img={microsoftlogo}
               text="Continue with Microsoft"
-            />
+            /> */}
           </View>
           <ErrorModal
             onClose={handleCloseModal}

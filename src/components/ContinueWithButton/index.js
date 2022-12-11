@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, View, Text, StyleSheet, Pressable } from "react-native";
+import { func, string } from "prop-types";
 
 const ContinueWithButton = ({ onPress, text, img }) => {
   return (
@@ -16,6 +17,12 @@ const ContinueWithButton = ({ onPress, text, img }) => {
   );
 };
 
+ContinueWithButton.propTypes = {
+  onPress: func,
+  text: string,
+  img: string,
+};
+
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FFFFFF",
@@ -27,7 +34,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 5,
   },
-  compositeCont: {    
+  compositeCont: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "end",
@@ -35,10 +42,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     height: "100%",
-  },  
+  },
   text: {
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
 });
 

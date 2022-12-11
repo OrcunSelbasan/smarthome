@@ -1,5 +1,5 @@
 import { db } from "../../../firebaseConfig";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const getRooms = async (uid) => {
   const docRef = doc(db, "rooms", uid);

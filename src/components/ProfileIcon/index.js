@@ -10,8 +10,9 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { setLoggedOut } from "../../../features/loginSlice";
+import { string, object } from "prop-types";
 
-export default function ProfileIcon({ username, style }) {
+const ProfileIcon = ({ username, style }) => {
   const [showOptions, setShowOptions] = useState(false);
   const dispatch = useDispatch();
 
@@ -46,7 +47,12 @@ export default function ProfileIcon({ username, style }) {
       )}
     </View>
   );
-}
+};
+
+ProfileIcon.propTypes = {
+  username: string,
+  style: object,
+};
 
 const showAlert = (fn) =>
   Alert.alert("Log out", "Are you sure?", [
@@ -54,7 +60,7 @@ const showAlert = (fn) =>
       text: "Cancel",
       style: "cancel",
     },
-    { text: "OK, Log out", onPress: () => fn()},
+    { text: "OK, Log out", onPress: () => fn() },
   ]);
 
 const styles = StyleSheet.create({
@@ -72,3 +78,5 @@ const styles = StyleSheet.create({
     paddingStart: 5,
   },
 });
+
+export default ProfileIcon;
