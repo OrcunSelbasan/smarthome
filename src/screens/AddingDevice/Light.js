@@ -21,6 +21,7 @@ export default function Light(props) {
           isOnRoom={props.data.isAvailableScheme}
           onColorSelect={props.handleColors}
           room={props.room}
+          usedInRoom={false}
         />
       )}
       <CustomSwitchButton

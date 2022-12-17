@@ -19,7 +19,7 @@ const OnbContinue = (props) => {
 const styles = StyleSheet.create({
   button: {
     position: "absolute",
-    bottom: 70,
+    bottom: 115,
     right: 10,
     zIndex: 10,
     marginHorizontal: 10,
