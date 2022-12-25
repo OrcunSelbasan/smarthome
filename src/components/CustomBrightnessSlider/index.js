@@ -1,16 +1,28 @@
 // import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useCallback  } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
+import { toggleAction } from "../../api/controllers/roomActions";
+import debounce from 'lodash.debounce';
 
 const CustomBrightnessSlider = (props) => {
-  const [range, setRange] = useState(props.brightnessLevel ?? 0);
+  const [shownRange, setShownRange] = useState(props.brightnessLevel ?? 0)
+
+  function handleChange(value) {
+    value = parseInt(value * 100)
+    toggleAction("http://172.20.10.12:52170/room", props.room, "brightness", value);
+    console.log("Request send Brigthness: " + value);
+  }
+
+  const debouncedChangeHandler = useCallback(
+    debounce(handleChange, 500)
+  , []);
 
   return (
     <View style={styles.container}>
       <View style={styles.compositeStat}>
         <View>
-          <Text style={styles.text}>Brightness: {range}%</Text>
+          <Text style={styles.text}>Brightness: {shownRange}%</Text>
         </View>
         <View style={styles.brightLevelBar}>
           <Slider
@@ -20,8 +32,10 @@ const CustomBrightnessSlider = (props) => {
             minimumTrackTintColor="#5857F3"
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
-            value={range}
-            onValueChange={(value) => setRange(parseInt(value * 100))}
+            onValueChange={(value) => {
+              setShownRange(parseInt(value * 100))
+              debouncedChangeHandler(value)
+            }}
           />
         </View>
       </View>

@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
+import debounce from "lodash.debounce";
+import { toggleAction } from "../../api/controllers/roomActions";
 
-const HumidityLevel = ({rangeValue}) => {
+const HumidityLevel = ({rangeValue, room}) => {
   const [range, setRange] = useState(rangeValue ?? 0);
+
+  function handleChange(value) {
+    value = parseInt(value * 100)
+    setRange(value)
+    toggleAction("http://172.20.10.12:52170/room", room, "airhumidifier", value);
+    console.log("Request send Air Humidifier: " + value);
+  }
+
+  const debouncedChangeHandler = useCallback(
+    debounce(handleChange, 500)
+  , []);
 
   return (
     <View style={styles.container}>
@@ -19,8 +32,7 @@ const HumidityLevel = ({rangeValue}) => {
             minimumTrackTintColor="#5857F3"
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
-            value={range ?? 0}
-            onValueChange={(value) => setRange(parseInt(value * 1000))}
+            onValueChange={debouncedChangeHandler}
           />
         </View>
       </View>

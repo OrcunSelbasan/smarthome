@@ -47,7 +47,7 @@ const SignInScreen = () => {
         return user;
       })
       .then((user) => {
-        return fetchRoomsOfUser(user);
+          return fetchRoomsOfUser(user)
       })
       .then((rooms) => {
         dispatch(setRooms({ ...rooms }));
@@ -72,7 +72,7 @@ const SignInScreen = () => {
         postRooms(rooms.uid, { livingroom, bedroom, password: "0000" });
         return { livingroom, bedroom, password: "0000" };
       }
-    });
+    }).catch(err => console.log(err));
   }
 
   return (

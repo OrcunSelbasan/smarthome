@@ -13,6 +13,7 @@ const LivingRoom = (props) => {
       <RoomScreen
         functionalities={userCredential.rooms.livingroom}
         username={userCredential.user.username}
+        room={"livingroom"}
         bleStatus="BLE ON"
         img={livingIcon}
         title="Living Room"

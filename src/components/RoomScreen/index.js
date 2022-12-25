@@ -10,13 +10,14 @@ import DataKeeper from "../DataKeeper";
 import ProfileIcon from "../ProfileIcon";
 import LightColorPicker from "../LightColorPicker";
 
-const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
+const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }) => {
   const data = props.functionalities;
   const dropdownData = data?.modes?.map((data, i) => ({
     label: data.name,
     value: i + 1,
     ...data,
   }));
+  console.log(data);
   return data ? (
     <View style={styles.container}>
       <View style={styles.roomScreen}>
@@ -54,35 +55,41 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
             </View>
             {data?.colorSelect.isAvailable && (
               <LightColorPicker
+                room={room}
                 isOnRoom={true}
                 colors={data?.colorSelect.colors}
               />
             )}
             <BrightnessComponent condition={data?.brightnessSelect.isAvailable}>
-              <CustomBrightnessSlider />
+              <CustomBrightnessSlider room={room}/>
             </BrightnessComponent>
             <View style={styles.switchButtons}>
               <SwitchComponent
+                room={room}
                 name="Power"
                 condition={data?.powerSelect.isAvailable}
                 isEnabledButton={data?.powerSelect.isEnabled}
               />
               <SwitchComponent
+                room={room}
                 name="Smart Light Mode"
                 condition={data?.smartSelect.isAvailable}
                 isEnabledButton={data?.smartSelect.isEnabled}
               />
               <SwitchComponent
+                room={room}
                 name="Sunlight Effect"
                 condition={data?.sunlightSelect.isAvailable}
                 isEnabledButton={data?.sunlightSelect.isEnabled}
               />
               <SwitchComponent
+                room={room}
                 name="Window"
                 condition={data?.windowSelect.isAvailable}
                 isEnabledButton={data?.windowSelect.isEnabled}
               />
               <SwitchComponent
+                room={room}
                 name="Air Humidifier"
                 condition={data?.humidifierSelect.isAvailable}
                 isEnabledButton={data?.humidifierSelect.isEnabled}
@@ -93,6 +100,7 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
             >
               <HumidityLevel
                 range={data?.humidifierAdjustmentSelect.humidityLevel}
+                room={room}
               />
             </BrightnessComponent>
             <DataKeeper />
@@ -112,13 +120,14 @@ const RoomScreen = ({ username, bleStatus, img, title, setIcon, ...props }) => {
   );
 };
 
-const SwitchComponent = ({ name, condition, isEnabledButton }) => {
+const SwitchComponent = ({ name, condition, isEnabledButton, room }) => {
   return (
     condition && (
       <CustomSwitchButton
         onSwitchChange={() => {}}
         style={{ fontSize: 24, marginLeft: 20 }}
         buttonName={name}
+        room={room}
         isEnabledButton={isEnabledButton}
       />
     )
