@@ -61,7 +61,7 @@ const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }
               />
             )}
             <BrightnessComponent condition={data?.brightnessSelect.isAvailable}>
-              <CustomBrightnessSlider />
+              <CustomBrightnessSlider room={room}/>
             </BrightnessComponent>
             <View style={styles.switchButtons}>
               <SwitchComponent
@@ -100,6 +100,7 @@ const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }
             >
               <HumidityLevel
                 range={data?.humidifierAdjustmentSelect.humidityLevel}
+                room={room}
               />
             </BrightnessComponent>
             <DataKeeper />

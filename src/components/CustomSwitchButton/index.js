@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Switch, View, Text, StyleSheet } from "react-native";
 import { string, func, bool, any, object } from "prop-types";
+import { toggleAction } from "../../api/controllers/roomActions";
 
 const CustomSwitchButton = ({
   buttonName,
@@ -13,17 +14,28 @@ const CustomSwitchButton = ({
   const [isEnabled, setIsEnabled] = useState(isEnabledButton ?? false);
   const toggleSwitch = () => {
     // ! WE MADE REQUESTS HERE, RELATED CODE MOVED TO ROOMACTIONS.JS
+    // door, window, power, brightness, smartlight, sunlight
     switch (buttonName) {
       case "Power":
-        console.log("action 0");
+        console.log("Request send", buttonName);
+        toggleAction("http://172.20.10.12:52170/room", room, "power", !isEnabled);
+        break;
       case "Window":
-        console.log("action 1");
+        console.log("Request send", buttonName);
+        toggleAction("http://172.20.10.12:52170/room", room, "window", !isEnabled);
+        break;
       case "Smart Light Mode":
-        console.log("action 2");
+        console.log("Request send", buttonName);
+        toggleAction("http://172.20.10.12:52170/room", room, "smartlight", !isEnabled);
+        break;
       case "Sunlight Effect":
-        console.log("action 3");
+        console.log("Request send", buttonName);
+        toggleAction("http://172.20.10.12:52170/room", room, "sunlight", !isEnabled);
+        break;
       case "Air Humidifier":
-        console.log("action 4");
+        console.log("Request send", buttonName);
+        toggleAction("http://172.20.10.12:52170/room", room, "airhumidifier", !isEnabled);
+        break;
     }
 
     setIsEnabled((previousState) => !previousState);

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Bedroom = (props) => {
   const userCredential = useSelector((state) => state.login);
+  console.log("OWWOWO",userCredential.user);
   return (
     <View style={styles.container}>
       <RoomScreen

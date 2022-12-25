@@ -4,6 +4,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { func, bool, array } from "prop-types";
 import { useEffect } from "react";
 import RadioButtonGroup from "react-native-animated-radio-button-group";
+import { toggleAction } from "../../api/controllers/roomActions";
 
 const ColorScheme = ({
   onColorSelect,
@@ -33,7 +34,6 @@ const ColorScheme = ({
   }, [activeColor]);
 
   // TODO: implement POST request to do radio button group
-
   return (
     <View style={styles.colorScheme}>
       {isOnRoom ? null : (
@@ -44,7 +44,15 @@ const ColorScheme = ({
           <RadioButtonGroup
             data={data}
             horizontal
-            onChange={(item) => console.log("Selected Item: ", item)}
+            onChange={(item) => {
+              toggleAction(
+                "http://172.20.10.12:52170/room",
+                room,
+                "changeColor",
+                item.color
+              );
+              console.log("Send request changeColor", item.color);
+            }}
             onPress={() => {}}
           />
         ) : (
