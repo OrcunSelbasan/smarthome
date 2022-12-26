@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import CustomDropdown from "../CustomDropdown";
 import CustomBrightnessSlider from "../CustomBrightnessSlider";
 import CustomSwitchButton from "../CustomSwitchButton";
@@ -9,15 +16,42 @@ import Loading from "../ActivityIndicator";
 import DataKeeper from "../DataKeeper";
 import ProfileIcon from "../ProfileIcon";
 import LightColorPicker from "../LightColorPicker";
+import { useDispatch } from "react-redux";
+import { setIpAddress } from "../../../features/loginSlice";
+import { useState } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
-const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }) => {
+const RoomScreen = ({
+  username,
+  connectionStatus,
+  img,
+  room,
+  title,
+  setIcon,
+  ...props
+}) => {
   const data = props.functionalities;
+  const [ip, setIp] = useState("");
+  const ipRef = useRef();
+  const dispatch = useDispatch();
   const dropdownData = data?.modes?.map((data, i) => ({
     label: data.name,
     value: i + 1,
     ...data,
   }));
-  console.log(data);
+
+  function validateIPaddress(ip) {
+    if (
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+        ip
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   return data ? (
     <View style={styles.container}>
       <View style={styles.roomScreen}>
@@ -29,7 +63,30 @@ const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }
             />
           </View>
           <View style={styles.bleBar}>
-            <Text style={styles.bleText}>{bleStatus}</Text>
+            <Text style={styles.bleText}>
+              <Text style={{ color: "white" }}>IP: </Text>
+              {/* {connectionStatus} */}
+            </Text>
+            <TextInput
+              style={styles.bleText}
+              keyboardType="decimal-pad"
+              maxLength={15}
+              onChangeText={(e) => {
+                e = e.replaceAll(",", ".");
+                setIp(e);
+              }}
+              onEndEditing={() => {
+                let cond = validateIPaddress(ip)
+                if (cond) {
+                  dispatch(setIpAddress(ip));
+                } else {
+                  console.log("Wrong IP address");
+                }
+              }}
+              defaultValue={connectionStatus}
+              onFocus={() => ipRef.current.clear()}
+              ref={ipRef}
+            />
           </View>
         </View>
         <View style={styles.iconAndTitle}>
@@ -48,61 +105,80 @@ const RoomScreen = ({ username, bleStatus, img, room, title, setIcon, ...props }
         <View style={styles.test}>
           <View style={styles.bodyContainer}>
             <View style={styles.bodyHeader}>
-              <View style={styles.dropdown}>
+              {/* <View style={styles.dropdown}>
                 <CustomDropdown modes={dropdownData} />
               </View>
-              {/* <RoomSettings {...props} setIcon={setIcon} /> */}
+              <RoomSettings {...props} setIcon={setIcon} /> */}
             </View>
-            {data?.colorSelect.isAvailable && (
-              <LightColorPicker
-                room={room}
-                isOnRoom={true}
-                colors={data?.colorSelect.colors}
-              />
+            {hasFuncs(data) ? (
+              <React.Fragment>
+                {data?.colorSelect.isAvailable && (
+                  <LightColorPicker
+                    room={room}
+                    isOnRoom={true}
+                    colors={data?.colorSelect.colors}
+                  />
+                )}
+                <BrightnessComponent
+                  condition={data?.brightnessSelect.isAvailable}
+                >
+                  <CustomBrightnessSlider room={room} />
+                </BrightnessComponent>
+                <View style={styles.switchButtons}>
+                  <SwitchComponent
+                    room={room}
+                    name="Power"
+                    condition={data?.powerSelect.isAvailable}
+                    isEnabledButton={data?.powerSelect.isEnabled}
+                  />
+                  <SwitchComponent
+                    room={room}
+                    name="Smart Light Mode"
+                    condition={data?.smartSelect.isAvailable}
+                    isEnabledButton={data?.smartSelect.isEnabled}
+                  />
+                  <SwitchComponent
+                    room={room}
+                    name="Sunlight Effect"
+                    condition={data?.sunlightSelect.isAvailable}
+                    isEnabledButton={data?.sunlightSelect.isEnabled}
+                  />
+                  <SwitchComponent
+                    room={room}
+                    name="Window"
+                    condition={data?.windowSelect.isAvailable}
+                    isEnabledButton={data?.windowSelect.isEnabled}
+                  />
+                  <SwitchComponent
+                    room={room}
+                    name="Air Humidifier"
+                    condition={data?.humidifierSelect.isAvailable}
+                    isEnabledButton={data?.humidifierSelect.isEnabled}
+                  />
+                </View>
+                <BrightnessComponent
+                  condition={data?.humidifierAdjustmentSelect.isAvailable}
+                >
+                  <HumidityLevel
+                    range={data?.humidifierAdjustmentSelect.humidityLevel}
+                    room={room}
+                  />
+                </BrightnessComponent>
+              </React.Fragment>
+            ) : (
+              <View>
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: 24,
+                    marginVertical: 75,
+                  }}
+                >
+                  Empty Room
+                </Text>
+              </View>
             )}
-            <BrightnessComponent condition={data?.brightnessSelect.isAvailable}>
-              <CustomBrightnessSlider room={room}/>
-            </BrightnessComponent>
-            <View style={styles.switchButtons}>
-              <SwitchComponent
-                room={room}
-                name="Power"
-                condition={data?.powerSelect.isAvailable}
-                isEnabledButton={data?.powerSelect.isEnabled}
-              />
-              <SwitchComponent
-                room={room}
-                name="Smart Light Mode"
-                condition={data?.smartSelect.isAvailable}
-                isEnabledButton={data?.smartSelect.isEnabled}
-              />
-              <SwitchComponent
-                room={room}
-                name="Sunlight Effect"
-                condition={data?.sunlightSelect.isAvailable}
-                isEnabledButton={data?.sunlightSelect.isEnabled}
-              />
-              <SwitchComponent
-                room={room}
-                name="Window"
-                condition={data?.windowSelect.isAvailable}
-                isEnabledButton={data?.windowSelect.isEnabled}
-              />
-              <SwitchComponent
-                room={room}
-                name="Air Humidifier"
-                condition={data?.humidifierSelect.isAvailable}
-                isEnabledButton={data?.humidifierSelect.isEnabled}
-              />
-            </View>
-            <BrightnessComponent
-              condition={data?.humidifierAdjustmentSelect.isAvailable}
-            >
-              <HumidityLevel
-                range={data?.humidifierAdjustmentSelect.humidityLevel}
-                room={room}
-              />
-            </BrightnessComponent>
             <DataKeeper />
           </View>
         </View>
@@ -140,6 +216,22 @@ const BrightnessComponent = (props) => {
   );
 };
 
+const hasFuncs = (data) => {
+  const conditions = Object.keys(data).map((key) => data[key].isAvailable);
+  // [
+  //   data.brightnessSelect.isAvailable,
+  //   data.colorSelect.isAvailable,
+  //   data.humidifierAdjustmentSelect.isAvailable,
+  //   data.humidifierSelect.isAvailable,
+  //   data.powerSelect.isAvailable,
+  //   data.smartSelect.isAvailable,
+  //   data.sunlightSelect.isAvailable,
+  //   data
+  // ];
+  if (conditions.every((cond) => !cond)) return false;
+  return true;
+};
+
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -163,17 +255,21 @@ const styles = StyleSheet.create({
   header: {},
   bleBar: {
     backgroundColor: "#232323",
-    width: 114,
-    height: 40,
+    width: 240,
+    height: 50,
     borderRadius: 100,
     alignItems: "center",
-    marginLeft: 180,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginLeft: 70,
+    marginTop: 7,
   },
   bleText: {
-    color: "#D9D6D9",
+    color: "#57E7CB",
     fontSize: 24,
     fontWeight: "bold",
-    paddingTop: 5,
+    paddingTop: 0,
   },
   iconAndTitle: {
     marginVertical: 20,

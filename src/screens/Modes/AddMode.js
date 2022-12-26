@@ -41,7 +41,6 @@ const AddMode = () => {
   useEffect(() => {
     localDispatch({type: "SET_ROOMS", payload: userCredential.rooms});
   }, [])
-  console.log(state);
   return (
     <View style={styles.container}>
       <NameInput placeholder="Cinemode" />

@@ -1,22 +1,27 @@
 // import { StatusBar } from "expo-status-bar";
-import React, { useState, useCallback  } from "react";
+import React, { useState, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 import { toggleAction } from "../../api/controllers/roomActions";
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
+import { useSelector } from "react-redux";
 
 const CustomBrightnessSlider = (props) => {
-  const [shownRange, setShownRange] = useState(props.brightnessLevel ?? 0)
+  const [shownRange, setShownRange] = useState(props.brightnessLevel ?? 0);
+  const ip = useSelector((state) => state.login.ipAddress);
 
   function handleChange(value) {
-    value = parseInt(value * 100)
-    toggleAction("http://172.20.10.12:52170/room", props.room, "brightness", value);
+    value = parseInt(value * 100);
+    toggleAction(
+      "http://" + ip + ":52170" + "/room",
+      props.room,
+      "brightness",
+      value
+    );
     console.log("Request send Brigthness: " + value);
   }
 
-  const debouncedChangeHandler = useCallback(
-    debounce(handleChange, 500)
-  , []);
+  const debouncedChangeHandler = useCallback(debounce(handleChange, 500), []);
 
   return (
     <View style={styles.container}>
@@ -33,8 +38,8 @@ const CustomBrightnessSlider = (props) => {
             maximumTrackTintColor="#D9D6D9"
             thumbTintColor="#5857F3"
             onValueChange={(value) => {
-              setShownRange(parseInt(value * 100))
-              debouncedChangeHandler(value)
+              setShownRange(parseInt(value * 100));
+              debouncedChangeHandler(value);
             }}
           />
         </View>

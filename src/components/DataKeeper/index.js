@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const DataKeeper = () => {
-  const currentDate = new Date().toLocaleDateString();
+  const date = new Date();
+  const currentDate = date.toLocaleDateString();
 
   const [time, setTime] = useState(currentDate);
 
@@ -10,11 +11,8 @@ const DataKeeper = () => {
     <View style={styles.container}>
       <Text style={styles.dailyDate}>{time}</Text>
       <Text style={styles.upToNow}>Up to now</Text>
-      <Text style={styles.dataInfo}>Total usage of kW:</Text>
-      <Text style={styles.dataInfo}>Total usage time of light:</Text>
-      <Text style={styles.dataInfo}>
-        Brightness: 10
-      </Text>
+      <Text style={styles.dataInfo}>Total usage of kW:   N/A</Text>
+      <Text style={styles.dataInfo}>Total usage time of light:   N/A</Text>
     </View>
   );
 };

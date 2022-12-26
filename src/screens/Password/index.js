@@ -9,6 +9,7 @@ import {
   Alert,
 } from "react-native";
 import { TextInput } from "react-native-paper";
+import { useSelector } from "react-redux";
 import {
   toggleLoginPassword,
   togglePassword,
@@ -22,7 +23,7 @@ export default function Password() {
   const [newPA, setNewPA] = useState();
   const [loginP, setLoginP] = useState();
 
-  console.log(oldP, newP, newPA, loginP);
+  const ip = useSelector(state => state.login.ipAddress)
 
   function reset() {
     setNewPA("")
@@ -47,8 +48,9 @@ export default function Password() {
             <TI
               onChangeText={(val) => setLoginP(val)}
               maxLength={6}
-              style={{ marginVertical: 20, padding: 15 }}
-              placeholder="useless placeholder"
+              style={{ marginVertical: 20, padding: 15, fontSize: 20 }}
+              placeholderTextColor="gray"
+              placeholder="Password"
               keyboardType="number-pad"
               secureTextEntry={true}
             />
@@ -56,7 +58,7 @@ export default function Password() {
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
                 toggleLoginPassword(
-                  "http://172.20.10.12:52170/door",
+                  "http://" + ip + ":52170" + "/door",
                   parseInt(loginP),
                   true
                 );
@@ -70,6 +72,14 @@ export default function Password() {
               }}
             >
               <Text style={styles.textStyle}>Open</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                setModalVisible1(false)
+              }}
+            >
+              <Text style={styles.textStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
@@ -95,8 +105,9 @@ export default function Password() {
             <TI
               onChangeText={(val) => setLoginP(val)}
               maxLength={6}
-              style={{ marginVertical: 20, padding: 15 }}
-              placeholder="useless placeholder"
+              style={{ marginVertical: 20, padding: 15, fontSize: 20 }}
+              placeholderTextColor="gray"
+              placeholder="Password"
               keyboardType="number-pad"
               secureTextEntry={true}
             />
@@ -104,7 +115,7 @@ export default function Password() {
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
                 toggleLoginPassword(
-                  "http://172.20.10.12:52170/door",
+                  "http://" + ip + ":52170" + "/door",
                   parseInt(loginP),
                   false
                 );
@@ -118,6 +129,14 @@ export default function Password() {
               }}
             >
               <Text style={styles.textStyle}>Lock</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                setModalVisible2(false)
+              }}
+            >
+              <Text style={styles.textStyle}>Close</Text>
             </Pressable>
           </View>
         </View>
@@ -170,7 +189,7 @@ export default function Password() {
         onPress={() => {
           if (newP === newPA && oldP !== newP) {
             togglePassword(
-              "http://172.20.10.12:52170/password",
+              "http://" + ip + ":52170" + "/password",
               parseInt(oldP),
               parseInt(newP)
             );
