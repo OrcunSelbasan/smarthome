@@ -2,10 +2,11 @@ import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { string, func, bool } from "prop-types";
 
-const CustomInput = ({ placeholder, onInput, secureTextEntry }) => {
+const CustomInput = ({ placeholder, onInput, secureTextEntry, kbType }) => {
   return (
     <View style={styles.container}>
       <TextInput
+        keyboardType={kbType}
         placeholder={placeholder}
         style={styles.input}
         autoCorrect={false}

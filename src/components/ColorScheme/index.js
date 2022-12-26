@@ -5,6 +5,7 @@ import { func, bool, array } from "prop-types";
 import { useEffect } from "react";
 import RadioButtonGroup from "react-native-animated-radio-button-group";
 import { toggleAction } from "../../api/controllers/roomActions";
+import { useSelector } from "react-redux";
 
 const ColorScheme = ({
   onColorSelect,
@@ -15,23 +16,25 @@ const ColorScheme = ({
   usingActiveColor,
   room,
 }) => {
-  const data = colors.map((color, i) => ({
-    id: i,
-    outerStyle: {
-      width: 40,
-      height: 40,
-      borderColor: color,
-      borderRadius: 25,
-    },
-    innerStyle: {
-      borderRadius: 25,
-    },
-    color: color,
-  }));
+  const data = colors.map((color, i) => {
+    let actualColor = color === "turquois" ? "#40e0d0" : color;
+    return {
+      id: i,
+      outerStyle: {
+        width: 40,
+        height: 40,
+        borderColor: actualColor,
+        borderRadius: 25,
+      },
+      innerStyle: {
+        borderRadius: 25,
+      },
+      color: actualColor,
+    };
+  });
 
-  useEffect(() => {
-    console.log("cs", activeColor);
-  }, [activeColor]);
+  const ip = useSelector(state => state.login.ipAddress)
+  useEffect(() => {}, [activeColor]);
 
   // TODO: implement POST request to do radio button group
   return (
@@ -46,7 +49,7 @@ const ColorScheme = ({
             horizontal
             onChange={(item) => {
               toggleAction(
-                "http://172.20.10.12:52170/room",
+                "http://" + ip + ":52170" + "/room",
                 room,
                 "changeColor",
                 item.color
@@ -62,7 +65,7 @@ const ColorScheme = ({
               style={{ width: 28, marginRight: 10 }}
               disableText={true}
               size={25}
-              fillColor={color}
+              fillColor={color === "turquois" ? "#40e0d0" : color}
               unfillColor="transparent"
               isChecked={checkedColors?.includes(color)}
               iconStyle={{ borderColor: color, borderRadius: 10 }}

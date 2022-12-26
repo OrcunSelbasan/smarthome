@@ -1,12 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState: {
     loggedIn: false,
     loadingMessage: "Trying to login...",
     user: {},
-    rooms: {}
+    rooms: {},
+    ipAddress: "",
+    isValidIp: false,
   },
   reducers: {
     setLoggedIn: (state, action) => {
@@ -21,11 +23,24 @@ export const loginSlice = createSlice({
     },
     setLoadingMessage: (state, action) => {
       state.loadingMessage = action.payload;
-    }
+    },
+    setIpAddress: (state, action) => {
+      state.ipAddress = action.payload;
+    },
+    setIsValidIp: (state, action) => {
+      state.isValidIp = action;
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setLoggedIn, setLoggedOut, setRooms, setLoadingMessage } = loginSlice.actions
+export const {
+  setLoggedIn,
+  setLoggedOut,
+  setRooms,
+  setLoadingMessage,
+  setIpAddress,
+  setIsValidIp,
+} = loginSlice.actions;
 
-export default loginSlice.reducer
+export default loginSlice.reducer;

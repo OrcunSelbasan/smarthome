@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 
 const Bedroom = (props) => {
   const userCredential = useSelector((state) => state.login);
-
+  const ip = useSelector(state => state.login.ipAddress)
   return (
     <View style={styles.container}>
       <RoomScreen
         functionalities={userCredential.rooms.bedroom}
         username={userCredential.user.username}
-        bleStatus="BLE ON"
+        connectionStatus={ip.includes(" ") ? ip.split(" ")[0] : ip}
+        checkIp = {ip}
         img={bedroomIcon}
         room={"bedroom"}
         title="Bedroom"

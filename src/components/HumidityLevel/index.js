@@ -3,14 +3,16 @@ import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 import debounce from "lodash.debounce";
 import { toggleAction } from "../../api/controllers/roomActions";
+import { useSelector } from "react-redux";
 
 const HumidityLevel = ({rangeValue, room}) => {
   const [range, setRange] = useState(rangeValue ?? 0);
+  const ip = useSelector(state => state.login.ipAddress)
 
   function handleChange(value) {
     value = parseInt(value * 100)
     setRange(value)
-    toggleAction("http://172.20.10.12:52170/room", room, "airhumidifier", value);
+    toggleAction("http://" + ip + ":52170" + "/room", room, "airhumidifier", value);
     console.log("Request send Air Humidifier: " + value);
   }
 

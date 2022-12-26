@@ -6,7 +6,7 @@ import CustomButton from "../../components/CustomButton";
 // import googlelogo from "../../../assets/images/googlelogo.png";
 // import microsoftlogo from "../../../assets/images/microsoftlogo.png";
 import { useDispatch } from "react-redux";
-import { setLoggedIn } from "../../../features/loginSlice";
+import { setIpAddress, setLoggedIn } from "../../../features/loginSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import { useState } from "react";
@@ -24,6 +24,7 @@ const SignInScreen = () => {
   const [errorMessageHeader, setErrorMessageHeader] = useState("");
   const [errorMessageBody, setErrorMessageBody] = useState("");
   const [loadingMessage, setLoadingMessage] = useState("Trying to log in...");
+  const [ip, setIp] = useState("");
   const dispatch = useDispatch();
 
   function handlePassword(input) {
@@ -38,7 +39,24 @@ const SignInScreen = () => {
     setIsError(false);
   }
 
+  function handleIP(value) {
+    value = value.replaceAll(",", ".")
+    setIp(value);
+  }
+
+  function validateIPaddress(ip) {
+    if (
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+        ip
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   function login() {
+    dispatch(setIpAddress(ip));
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -47,7 +65,7 @@ const SignInScreen = () => {
         return user;
       })
       .then((user) => {
-          return fetchRoomsOfUser(user)
+        return fetchRoomsOfUser(user);
       })
       .then((rooms) => {
         dispatch(setRooms({ ...rooms }));
@@ -63,16 +81,18 @@ const SignInScreen = () => {
   }
 
   async function fetchRoomsOfUser(user) {
-    return await getRooms(user.uid).then((rooms) => {
-      if (rooms.success) {
-        return rooms;
-      } else {
-        const livingroom = new Room().toObject();
-        const bedroom = new Room().toObject();
-        postRooms(rooms.uid, { livingroom, bedroom, password: "0000" });
-        return { livingroom, bedroom, password: "0000" };
-      }
-    }).catch(err => console.log(err));
+    return await getRooms(user.uid)
+      .then((rooms) => {
+        if (rooms.success) {
+          return rooms;
+        } else {
+          const livingroom = new Room().toObject();
+          const bedroom = new Room().toObject();
+          postRooms(rooms.uid, { livingroom, bedroom, password: "0000" });
+          return { livingroom, bedroom, password: "0000" };
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -89,7 +109,11 @@ const SignInScreen = () => {
               secureTextEntry={true}
               placeholder="Password"
             />
-            <CustomButton onPress={() => login()} text="Log in" />
+            <CustomInput kbType={"decimal-pad"} onInput={handleIP} placeholder="IP Address" />
+            <CustomButton
+              onPress={() => (validateIPaddress(ip) ? login() : () => {})}
+              text="Log in"
+            />
           </View>
           <View style={styles.continueWithBox}>
             {/* <ContinueWithButton img={googlelogo} text="Continue with Google" />

@@ -14,7 +14,7 @@ export default function Light(props) {
       />
       {props.data.isAvailableScheme && (
         <ColorScheme
-          colors={["red", "green", "blue", "white", "yellow"]}
+          colors={["red", "green", "blue", "turquois"]}
           checkedColors={Object.keys(props.data.colors).filter(
             (c) => props.data.colors[c]
           )}
