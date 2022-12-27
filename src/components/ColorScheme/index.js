@@ -48,13 +48,14 @@ const ColorScheme = ({
             data={data}
             horizontal
             onChange={(item) => {
+              let actualColor = item.color === "#40e0d0" ? "turquoise" : item.color
               toggleAction(
                 "http://" + ip + ":52170" + "/room",
                 room,
                 "changeColor",
-                item.color
+                actualColor
               );
-              console.log("Send request changeColor", item.color);
+              console.log("Send request changeColor", actualColor);
             }}
             onPress={() => {}}
           />
