@@ -16,7 +16,7 @@ To be able run mobile project in your local machine, make sure you have installe
 
 >  It runs without error on macOS, however you may get errors on Windows.
 
-Check out our [Demo]([https://pages.github.com/](https://www.youtube.com/watch?v=Han9q4etBYw))!
+### Check out our [Demo](https://www.youtube.com/watch?v=Han9q4etBYw)!
 
 # 1  Introduction
 
