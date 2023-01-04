@@ -1,103 +1,41 @@
-﻿![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.001.png)
+# Thanks
+Thank you to my teammates for their hard work.
 
-SMART HOME SYSTEM FINAL REPORT
+- [Arda Çelik](https://github.com/ardacelik1000)
+- [Gökalp Çevik](https://github.com/gokalpcevik)
+- [Süleyman Mehmet Güneş](https://github.com/suleymanmehmetgunes)
+- [Mert Şen](https://github.com/Mertsenn)
+- [Bükre Yağmur Türkoğlu](https://github.com/bukreyagmurturkoglu)
 
-by
+# 0 About Codebase
 
-ARDA C¸ELIK,˙ 119202051              BUKRE¨ YAGMUR˘ TURK¨ OGLU,˘ 119200054 GOKALP¨ C¸EVIK,˙ 120202074
+To be able run mobile project in your local machine, make sure you have installed Node.js. After cloning the project execute `npm i` in the project folder. You can use Expo Go app in your mobile phone to read the QR after starting the project with the command `npx expo start` or open a mobile simulator.
 
-LUTF¨ U¨ ORC¸UN SELBASAN, 119200063
+- Smart Home Server(async branch is the latest): https://github.com/gokalpcevik/smart-home-server
+- Smart Home Arduino: https://github.com/gokalpcevik/smart-home
 
-MERT S¸EN, 119200031                SULEYMAN¨ MEHMET GUNES¨ ¸, 119200077
+>  It runs without error on macOS, however you may get errors on Windows.
 
-Supervised by
+### Check out our [Demo]([https://pages.github.com/](https://www.youtube.com/watch?v=Han9q4etBYw))!
 
-ELIF˙ PINAR HACIBEYOGLU˘
-
-Submitted to the
-
-FACULTY OF ENGINEERING AND NATURAL SCIENCES
-
-in partial fulfillment of the requirements for the
-
-Bachelor of Science
-
-in the
-
-COMPUTER ENGINEERING & ELECTRICAL AND ELECTRONICS
-
-ENGINEERING
-
-December, 2022
-
-Table of Contents
-
-[Table of Contents](#_page0_x102.88_y121.56) ii [List of Tables](#_page0_x102.88_y121.56) 1 [1 Introduction](#_page3_x102.88_y128.79) 1 [2 Project Details](#_page4_x102.88_y128.79) 2
-
-1. [Motivation ](#_page4_x102.88_y155.93). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
-1. [Aim of the Project ](#_page4_x102.88_y341.75). . . . . . . . . . . . . . . . . . . . . . . . 2
-1. [Importance of the Project ](#_page5_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . 3
-1. [Group Members and Tasks .](#_page6_x102.88_y128.79) . . . . . . . . . . . . . . . . . . . 4
-1. [Technologies ](#_page6_x102.88_y342.73). . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
-1. [Challanges ](#_page7_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
-1. [Timeline ](#_page8_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-1. [Requirement Table ](#_page9_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . . . . 7
-
-[3 Methodology](#_page10_x102.88_y128.79) 8
-
-1. [Project Design ](#_page10_x102.88_y155.93). . . . . . . . . . . . . . . . . . . . . . . . . . 8
-1. [Tests and Their Contents . ](#_page12_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . 10
-
-[4 Material Cost](#_page13_x102.88_y128.79) 11 [5 Equipments](#_page14_x102.88_y128.79) 12
-
-[6 Hardware Design](#_page16_x102.88_y128.79) 14
-
-1. [The HTTP Server .](#_page16_x102.88_y155.93) . . . . . . . . . . . . . . . . . . . . . . . . 14
-1. [Multi-threaded Architecture .](#_page17_x102.88_y128.79) . . . . . . . . . . . . . . 15
-1. [Request Handling ](#_page18_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . 16
-1. [Handling Requests and the Board Communication . .](#_page18_x102.88_y593.12) . 16
-1. [Sending Commands via Win32 API .](#_page20_x102.88_y280.18) . . . . . . . . . . 18
-1. [Command Builder ](#_page21_x102.88_y408.38). . . . . . . . . . . . . . . . . . . . 19
-2. [Arduino UNO Software and Hardware ](#_page22_x102.88_y245.99). . . . . . . . . . . . . 20
-1. [Reading the Serial Line .](#_page22_x102.88_y267.31) . . . . . . . . . . . . . . . . . 20
-1. [Applying the Commands .](#_page23_x102.88_y332.66) . . . . . . . . . . . . . . . . 21
-1. [Pin Connections .](#_page25_x102.88_y174.24) . . . . . . . . . . . . . . . . . . . . . 23
-1. [Light Sensor and Sunlight Mode .](#_page25_x102.88_y464.21) . . . . . . . . . . . . 23
-3. [Physical Design ](#_page26_x102.88_y235.12). . . . . . . . . . . . . . . . . . . . . . . . . . 24
-
-ii
-
-[7 Software Design](#_page29_x102.88_y128.79) 27
-
-1. [Authentication ](#_page29_x102.88_y155.93). . . . . . . . . . . . . . . . . . . . . . . . . . 27
-1. [Redux ](#_page31_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
-1. [Packages ](#_page35_x102.88_y128.79). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
-1. [UI Libraries ](#_page36_x102.88_y157.47). . . . . . . . . . . . . . . . . . . . . . . . 34
-1. [Routing Libraries ](#_page36_x102.88_y586.41). . . . . . . . . . . . . . . . . . . . . 34
-1. [Other Libraries ](#_page37_x102.88_y157.47). . . . . . . . . . . . . . . . . . . . . . 35
-
-[8 Results & Discussions](#_page38_x102.88_y128.79) 36 [9 Conclusion](#_page39_x102.88_y128.79) 37 [References](#_page39_x102.88_y128.79) 38
-
-iii
-
-1  Introduction
+# 1  Introduction
 
 First of all, the project group members think that time is people’s most important wealth. Nowadays, it isn’t easy to think otherwise because every human being is in a race against time. This project was started to save time and increase the quality of life. The quality of people’s use of their time has positive results in their lives. It contributes to the need for socialization, one of the basic necessities of human life, in the time left behind from work life. As the quality of life increases, productive results occur in the work done.
 
 On the other hand, in our world where energy resources are limited and are being depleted day by day, sustainable energy sources are on the agenda. Sun is one of the most sustainable sources of an alternative to electricity. It is included in this project because it can be used as a light and in any device that requires energy.
 
-2  Project Details
-1. Motivation
+# 2  Project Details
+## 2.1. Motivation
 
 Technology continues to exist in every aspect of our lives. People already use different technologies for most of their lives. One of the main motivations of the project is that people can implement the technology and technological developments that they use every day into the project and do their daily work without effort.
 
 The fact that the content of this project has become ordinary, such as turning on the television with remote control, has been one of the other sources of motivation. Controlling people’s own homes, like controlling the television, can provide inner peace in terms of both time-saving and security.
 
-2. Aim of the Project
+## 2.2. Aim of the Project
 
 As one of the requirements of our age, people live in a time where people’s responsibilities are increasing day by day. They are exposed to small but many responsibilities and tasks, and those are time-consuming. Based on the motto of saving time, it was aimed to speed up the completion time of these tasks and significantly reduce distraction. Therefore, with the Smart Home System Mobile Application, this project was started with the belief that some of the work that people have to do manually at home can be done with a single click.
 
-3. Importance of the Project
+## 2.3. Importance of the Project
 
 There are moments when people are fully focused on work and spend hours on it. It can be unhealthy and cause distraction especially if it happens during sunset. Because the screen is brighter than the light level in the room and they have to get up and turn on the lights to keep going. Another instance might be a gathering with friends, where they have dinner and play some video games when people should not miss the fun, or feel uncomfortable when doing a small task.
 
@@ -113,19 +51,19 @@ There is second functionality of the system where you can set the password for t
 
 Those features are promising and various functionalities can be built on top of them. As an instance, alarming the user if the entrance door is forced to open. However, tried to keep the prototype simple and solid for more advanced enhancements. To sum up, this project allows its users to be able to interact with the environment and comes with extra features to evolve it into a fully functional smart house.
 
-4. Group Members and Tasks
+## 2.4. Group Members and Tasks
 
 
 
 |Names|Roles|
 | - | - |
-|Arda C¸elik|Electric and Embedded Engineer, Prototype Designer, Project Resource Designer|
-|Bukre¨ Ya˘gmur Turk¨ o˘glu|Software Developer, Report Designer|
-|G¨okalp C¸evik|Electric and Embedded Engineer, Prototype Designer|
-|Lutf¨ u¨ Or¸cun Selbasan|Software Developer, UI Designer, Project Manager|
-|Mert S¸en|Software Developer|
-|Suleyman¨ Mehmet Gune¨ ¸s|Software Developer, UI Designer|
-5. Technologies
+|Arda Çelik|Electric and Embedded Engineer, Prototype Designer, Project Resource Designer|
+|Bükre Yağmur Türkoğlu|Software Developer, Report Designer|
+|Gökalp Çevik|Electric and Embedded Engineer, Prototype Designer|
+|Lütfü Orçun Selbasan Selbasan|Software Developer, UI Designer, Project Manager|
+|Mert Şen|Software Developer|
+|Süleyman Mehmet Güneş|Software Developer, UI Designer|
+## 2.5. Technologies
 
 Some technologies were needed for the smart home system project to be ready for use. These technologies are:
 
@@ -137,7 +75,7 @@ Some technologies were needed for the smart home system project to be ready for 
 - The power supply supplies power to the servo motor.
 - LEDs provide a variety of colors.
 - Glue, scissors, and cardboard box project prototype were used.
-6. Challanges
+## 2.6. Challanges
 
 Problem 1:
 
@@ -155,7 +93,7 @@ Solution 2:
 
 The application was made to work only in the home, the systems were ordered accordingly and implemented in the model.
 
-7. Timeline
+## 2.7. Timeline
 
 
 
@@ -174,9 +112,9 @@ The application was made to work only in the home, the systems were ordered acco
 |Week 11|Development & Test — The mode of communication was agreed upon and tested on the project. Implementation of house design continued. The interim report was presented.|
 |Week 12|Development & Test — Client-server tests were performed by request. The model was painted and the equipment was soldered. Bugs in the application have been resolved.|
 |Week 13|Test — Videos and photos of the application were taken for presentation, and testing stages were shown.|
-8. Requirement Table
 
 
+## 2.8. Requirement Table
 
 |Identifier|Priority|Requirement|
 | - | - | - |
@@ -189,8 +127,10 @@ The application was made to work only in the home, the systems were ordered acco
 |REQ7|3|Sunlight can be turned on and off from the app.|
 |REQ8|3|Unlike sunlight mode, this mode doesn’t try to adjust the room’s light level to the ideal level during the day. It powers off when lighting is not necessary.|
 |REQ9|5|The window can be opened and closed from the appli- cation.|
-3  Methodology
-1. Project Design
+
+
+# 3  Methodology
+## 3.1. Project Design
 
 Although it was not possible to proceed exactly according to the rules, the product was tried to be revealed in a short time by using the Agile develop- ment method. At the time of the crisis, the features were changed instantly and the work continued. The Daily Scrum has been tried and supplemented by weekly long meetings. In addition, the Test Driven Development method was adopted and after each feature was tested, it was tried to move on to the other feature. A client-server architecture (client-server model and com- puters) is required for a smart home project. According to the request from the client, a response is returned on the server and an event occurs in the model (open-close).In addition, the mobile application was made ready for use using React Native. Expo Go was used for this. The relevant button is pressed for the desired function from the mobile application. The UML diagrams below are designed to describe the application design.
 
@@ -202,7 +142,7 @@ Figure 1: Smart Home System Application UML Activities Diagram
 
 Figure 2: Smart Home System Applications UML Use Case Diagram
 
-2. Tests and Their Contents
+## 3.2. Tests and Their Contents
 
 An observational study was carried out in the project. Experiments were made with test cases, and as a result, the model was implemented according to the observed results.
 
@@ -221,7 +161,8 @@ An observational study was carried out in the project. Experiments were made wit
 |Changing the light colors sequentially|When the user presses the light change button, he gets the colors red, yellow, blue, and turquoise.|PASSED|
 |Sending a re- quest to the server for door|When the request comes, it can print it on the computer screen and open the door.|PASSED|
 |Sending a re- quest to the server for win- dow|When the request comes, it can print it on the computer screen and open the window.|PASSED|
-4  Material Cost
+
+# 4  Material Cost
 
 Some materials were ordered, and some were owned by hardware developers. The total cost amounted to 139.67 TL.
 
@@ -242,7 +183,8 @@ Some materials were ordered, and some were owned by hardware developers. The tot
 |Network Cable|FREE|
 |Cardboard Box|FREE|
 |Solder|FREE|
-5  Equipments
+
+# 5  Equipments
 
 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.004.jpeg) ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.005.jpeg)
 
@@ -268,8 +210,8 @@ Figure 3
 
 Figure 4
 
-6  Hardware Design
-1. The HTTP Server
+# 6  Hardware Design
+## 6.1. The HTTP Server
 
 HTTP Server was written in C++, using various open-source libraries as below:
 
@@ -281,113 +223,67 @@ HTTP Server was written in C++, using various open-source libraries as below:
 
 Although the server was designed and written in such a way that it would work really well with the Arduino, it is still general enough that it can be used for other purposes, like a general HTTP(s) server. Most of the boil- erplate code for interacting with the sockets and platform-specific APIs for networking is handled by Boost. Beast and the Boost.asio libraries. spdlog is used for logging the status of the server to the console window. simdjson is used for the parsing of the http request bodies and yaml-cpp is used for storing various types of data for the configuration of the server.
 
-1. Multi-threaded Architecture
+### 6.1.1. Multi-threaded Architecture
 
 The server was written in a multi-threaded way to handle multiple requests concurrently. At the start of the application, depending on the configuration, several threads are launched and are always listening to connections coming from the transport layer. The server’s main process loop may be seen below.
-
-1 auto Application : : Start () const −> std : : int32 t![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.014.png)
-
-2 {
-
-3 // Accept requests from all the ip addresses
-
-4 // which would be 0.0.0.0
-
-5 auto const address = ip : : make address( config : :![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.015.png)
-
-g IpAddress ) ;![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.016.png)
-
-6
-
-7 // Create the asio io\_context with
-
-8 // the thread hint
-
-9 net : : io context ioc { config : : g Threads };![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.017.png)
-
-10
-
-11 auto const listener =
-
-12 std : : make shared < server : : Listener >(ioc ,![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.018.png)
-
-13 tcp : : endpoint {address , config : : g ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.019.png)Port }) ;
-
-14 // Starts listening for connections that are handled 15 // through the asio::net::io\_context
-
-16 listener −> Start () ;
-
-17 // Run the I/O service on the requested number of
-
-threads
-
-18 std : : vector <std : : thread > v;
-
-19 v. reserve ( config : : g Threads − 1) ;![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.020.png)
-
-20 for ( auto i = config : : g Threads − 1; i > 0; −− i ) ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.021.png)21 v. emplace back(![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.022.png)
-
-22 [&ioc ]
-
-23 {
-
-24 ioc . run () ;
-
-25 }) ;
-
-26 ioc . run () ;
-
-27 return EXIT~~ SUCCESS; 28 }
-
-2. Request Handling
+``` cpp
+    auto Application::Start() const -> std::int32_t
+    {
+        // Accept requests from all the ip addresses
+        // which would be 0.0.0.0
+        auto const address = ip::make_address(config::g_IpAddress);
+        
+        // Create the asio io_context with
+        // the thread hint
+        net::io_context ioc{ config::g_Threads };
+        
+        auto const listener = std::make_shared<server::Listener>(ioc, tcp::endpoint{ address, config::g_Port });
+        
+        // Starts listening for connections that are handled
+        // through the asio::net::io_context
+    	  listener->Start();
+        
+        // Run the I/O service on the requested number of threads
+        std::vector<std::thread> v;
+        v.reserve(config::g_Threads - 1);
+        for (auto i = config::g_Threads - 1; i > 0; --i)
+            v.emplace_back(
+                [&ioc]
+                {
+                    ioc.run();
+                });
+        ioc.run();
+        return EXIT_SUCCESS;
+    }
+```
+### 6.1.2. Request Handling
 
 When the client sends a request, a new session is launched from the listener which is listening for connections from all the threads and then once the reading is done, error handling is done and after that, the static function Server::HandleRequest() is called which performs further handling that is, depending on the endpoint, HTTP method verb, and the request body.
 
-1 void Session : : OnRead( beast : : error ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.023.png)code ec , std : : size ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.024.png)t
-
-bytesTransferred )
-
-2 {
-
-3 boost : : ignore unused ( bytesTransferred ) ;![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.022.png)
-
-4 // This means the connection was closed by the other
-
-side.
-
-5 if (ec == http : : error : : end of stream )![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.025.png)![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.026.png)
-
-6 {
-
-7 shm trace ( "Connection was closed by the other side.![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.027.png)
-
-" ) ;
-
-8 return Close () ;
-
-9 }
-
-10 // General error handler
-
-11 if (ec)
-
-12 {
-
-13 SHM~~ SV~~ ERR(ec) ;
-
-14 return ;
-
-15 }
-
-16 // No error has occurred and we can go ahead and
-
-process the request.
-
-17 Server : : HandleRequest( std : : move(m Request) , m~~ Lambda) ; ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.028.png)18 }
+``` cpp
+	void Session::OnRead(beast::error_code ec, std::size_t bytesTransferred)
+	{
+		boost::ignore_unused(bytesTransferred);
+		// This means the connection was closed by the other side.
+		if (ec == http::error::end_of_stream)
+		{
+			shm_trace("Connection was closed by the other side.");
+			return Close();
+		}
+		// General error handler
+		if(ec)
+		{
+			SHM_SV_ERR(ec);
+			return;
+		}
+		// No error has occurred and we can go ahead and process the request.
+		server::HandleRequest(std::move(m_Request), m_Lambda);
+	}
+```
 
 The second argument passed into the Server::HandleRequest() function is the function object that is constructed from a generic lambda and used to send an HTTP message.
 
-3. Handling Requests and the Board Communication
+### 6.1.3. Handling Requests and the Board Communication
 
 When a request is received on the server, all the sanity, and the validation checks such as whether the HTTP method verb can be handled correctly, endpoint exists or the request body is correctly sent are done.
 
@@ -441,286 +337,214 @@ Table 3: 64-bit encoded message format for the power command. †:Passed in as a
 |Total|− − −|8|
 Table 4: 64-bit encoded message format for the change color command. †:Passed in as an argument from the client.
 
-4. Sending Commands via Win32 API
+### 6.1.4. Sending Commands via Win32 API
 
 For the actual realization of the board communication, Win32 API was used. A class named shm::embedded::SerialCommunication provides a simple in- terface that can be used with minimal boilerplate configuration and initial- ization. The class is a simple wrapper around the ::WriteFile and ::ReadFile functions in the Win32 API and makes use of the COM functionality.
 
-1 enum class BaudRate : uint32 t![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.029.png)
+``` cpp
+enum class BaudRate : uint32_t
+	{
+		BR9600    = CBR_9600,
+		BR38400   = CBR_38400,
+		BR115200  = CBR_115200
+	};
 
-2 {
+	class SerialCommunication
+	{
+	public:
+		SerialCommunication() = default;
+		SerialCommunication(SerialCommunication const&) = delete;
+		SerialCommunication& operator=(SerialCommunication const&) = delete;
+		SerialCommunication(std::string_view portName, BaudRate baudRate);
+		~SerialCommunication();
+		bool WriteString(std::string const& message) const;
+		bool Write(void const* data, std::size_t size) const;
+		bool ReadBlocking(std::vector<char>& receivedData) const;
+	private:
+		HANDLE m_HComm{INVALID_HANDLE_VALUE};
+		DCB m_DCBSerialParams{};
+		std::string_view m_PortName{};
+	};
 
-3  BR9600 = CBR~~ 9600 ,
-3  BR38400 = CBR 38400 ,![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.030.png)
-3  BR115200 = CBR 115200![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.031.png)
-3  };
-
-7 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.032.png)
-
-8 class SerialCommunication
-
-9 {
-
-10  public :
-10  SerialCommunication () = default ;
-10  SerialCommunication(SerialCommunication const&) = delete ;
-10  SerialCommunication& operator=(SerialCommunication const &) = delete ;
-10  SerialCommunication( std : : string view portName , BaudRate ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.033.png)baudRate) ;
-10  ˜SerialCommunication () ;
-10  bool WriteString ( std : : string const& message) const ;
-10  bool Write( void const ∗ data , std : : size ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.034.png)t size ) const ;
-10  bool ReadBlocking( std : : vector <char>& receivedData ) const ;
-10  private :
-10  HANDLE m~~ HComm{INVALID~~ HANDLE~~ VALUE };
-10  DCB m DCBSerialParams {};![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.035.png)
-10  std : : string ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.036.png)view m~~ PortName {};
-23  };
+```
 
 Code 1: SerialCommunication Class Header
 
 In the implementation of the constructor, ::CreateFileA function is called that returns the HANDLE to the opened COM port, and any error associated with the call is handled and logged to stderr. After the file creation, the DCB structure is initialized with the configured baud rate and the com port. After a valid HANDLE is obtained, writing to the serial line is done through one function which can be seen below.
 
-1 bool SerialCommunication::Write(void const\* data, std::size\_t size) const
-
-2 {
-
-3  DWORD BytesWritten;
-3  return static\_cast <bool >(::WriteFile(m\_HComm , data , (DWORD)size, &BytesWritten , nullptr));
-
-5 }
+``` cpp
+	bool SerialCommunication::Write(void const* data, std::size_t size) const
+	{
+		DWORD BytesWritten;
+		return static_cast<bool>(::WriteFile(m_HComm, data, (DWORD)size, &BytesWritten, nullptr));
+	}
+```
 
 Code 2: SerialCommunication Write Function
 
-5. Command Builder
+### 6.1.5. Command Builder
 
 Commands are built according to the client’s request and the request body. After a valid JSON body was received the 64-bit encoded message gets cre- ated through a helper class called shm::embedded::CommandBuilder. Some of the code for the command creation can be seen below.
 
-1 uint64\_t CommandBuilder::BuildBrightness(ROOM room, uint32\_t brightness)
-
-2 {
-
-3  // 8 + 8 + 32 = 48 bytes total
-3  // data[0:7] is the function id
-3  // data[7:15] is the room id
-3  // data[47:16] is the brightness value
-3  return
-
-8 static\_cast <uint64\_t >(COMMAND::Brightness) |
-
-9 static\_cast <uint64\_t >(room) << 8 |
-
-10 static\_cast <uint64\_t >(brightness) << 16; 11 }
+``` cpp
+	uint64_t CommandBuilder::BuildBrightness(ROOM room, uint32_t brightness)
+	{
+		// 8 + 8 + 32 = 48 bytes total
+		// data[0:7] is the function id
+		// data[7:15] is the room id
+		// data[47:16] is the brightness value
+		return
+			static_cast<uint64_t>(COMMAND::Brightness) |
+			static_cast<uint64_t>(room)          << 8 |
+			static_cast<uint64_t>(brightness)    << 16;
+	}
+```
 
 Code 3: CommandBuilder Brightness Implementation
 
-1 uint64\_t CommandBuilder::BuildDoor(bool on)
-
-2 {
-
-3 return static\_cast <uint64\_t >(COMMAND::Door) | (( uint64\_t)on << 8);
-
-4 }
+``` cpp
+	uint64_t CommandBuilder::BuildDoor(bool on)
+	{
+		return static_cast<uint64_t>(COMMAND::Door) | ((uint64_t)on << 8);
+	}
+```
 
 Code 4: CommandBuilder Door Implementation
 
-2. Arduino UNO Software and Hardware
-1. Reading the Serial Line
+## 6.2. Arduino UNO Software and Hardware
+### 6.2.1. Reading the Serial Line
 
 When the 64-bit message comes in from the server via the serial line, it is read via the function Serial::readBytes(). Any unread bytes that were left from the previous read/write operations in the UART hardware buffer are cleared. Below piece of code is the general structure of the general operation described just before.
 
-1 void serialFlush()
+``` cpp
+  void serialFlush(){
+    while(Serial.available() > 0) {
+      char t = Serial.read();
+    }
+  }
 
-2 {
+  if(Serial.available() > 0)
+  {
+    size_t readBytes = Serial.readBytes(buffer,8);
+    if(readBytes != 8) return;
 
-3 while(Serial.available() > 0) {
+    serialFlush(); // Flushes the serial buffer in the UART hardware
 
-4 char t = Serial.read(); 5 }
-
-6 }
-
-7 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.037.png)
-
-8 void loop()
-
-9 {
-
-10  if(Serial.available() > 0)
-10  {
-
-12 size\_t readBytes = Serial.readBytes(buffer ,8); 13 if(readBytes != 8) return;
-
-14 serialFlush(); // Flushes the serial buffer in
-
-the UART hardware
-
-15 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.037.png)
-
-16 // We know that in every 64-bit message , the first byte contains the command information
-
-17 Command command = static\_cast <Command >(buffer
-
-[0]);
-
-18 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.038.png)
-
-19 // Handle the command according to the rest
-
-..........
-
-20 }
+    // We know that in every 64- bit message , the first byte contains the command information
+    Command command = static_cast<Command>(buffer[0]);
+    
+    // Handle the command according to the rest
+    // ..........
+```
 
 ’Command’ is the enum that matches with the values in Table 1. [Co](#_page19_x102.88_y222.02)de for the enum can be seen below.
 
-1 enum Command
+``` cpp
+enum Command
+{
+    CMD_BRIGHTNESS=0x0,
+    CMD_POWER=0x1,
+    CMD_SMARTLIGHT=0x2,
+    CMD_SUNLIGHT=0x3,
+    CMD_WINDOW=0x4,
+    CMD_DOOR=0x5,
+    CMD_SELECT_COLOR=0x6
+};
+```
 
-2 {
-
-3 CMD\_BRIGHTNESS=0x0,
-
-4 CMD\_POWER=0x1,
-
-5 CMD\_SMARTLIGHT=0x2,
-
-6 CMD\_SUNLIGHT=0x3,
-
-7 CMD\_WINDOW=0x4,
-
-8 CMD\_DOOR=0x5,
-
-9 CMD\_SELECT\_COLOR=0x6
-
-10 };
-
-2. Applying the Commands
+### 6.2.2. Applying the Commands
 
 Once the command is received, it is processed in a switch statement and the other parameters are extracted from the 8-byte buffer according to the command type. Below are examples of some of the commands.
 
-1 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.039.png)
+``` cpp
+    switch(command)
+    {
+          case CMD_DOOR:
+          {
+            uint8_t doorState = buffer[1];
+            if(doorState)
+            {
+              // Open the door smoothly here.
+              door.write(DOOR_OPENED_ANGLE);
+            }
+            else
+            {
+              // Close the door smoothly here.
+              door.write(DOOR_CLOSED_ANGLE);
+            }
 
-2 switch(command)
-
-3 {
-
-4  case CMD\_DOOR:
-4  {
-
-6 uint8\_t doorState = buffer[1];
-
-7 if(doorState)
-
-8 {
-
-9 door.write(DOOR\_OPENED\_ANGLE);
-
-10 }
-
-11 else
-
-12 {
-
-13 door.write(DOOR\_CLOSED\_ANGLE);
-
-14 }
-
-15 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.040.png)
-
-16 break; 17 }
+            break;
+          }
+```
 
 Code 5: Code for the handling the door command
 
-1 switch(command)
+``` cpp
+    switch(command)
+    {
+      case CMD_POWER:
+      {
+        if(sunlightOn) return;
 
-2 {
-
-3  case CMD\_POWER:
-3  {
-
-5 if(sunlightOn) return;
-
-6 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.041.png)
-
-7 uint8\_t powerState = buffer[2];
-
-8 if(room==BED\_ROOM)
-
-9 {
-
-10 bedroomPowerOn = powerState;
-
-11 analogWrite(BED\_ROOM\_LED0\_PIN ,(int)powerState
-
-\*(int)((float)bedroom\_brightness\*2.55f));
-
-12 }
-
-13 else if(room==LIVING\_ROOM)
-
-14 {
-
-15 livingroomPowerOn = powerState;
-
-16 analogWrite(LIVING\_ROOM\_LED0\_PIN ,(int)
-
-powerState\*(int)((float)livingroom\_brightness \*2.55f));
-
-17 analogWrite(LIVING\_ROOM\_LED1\_PIN ,(int)
-
-powerState\*(int)((float)livingroom\_brightness \*2.55f));
-
-18 SoftPWMSetPercent(LIVING\_ROOM\_LED2\_PIN ,(int)
-
-livingroomPowerOn\*(int)livingroom\_brightness);
-
-19 }
-
-20 break; 21 }
+        uint8_t powerState = buffer[2];
+        if(room==BED_ROOM) 
+        {
+          bedroomPowerOn = powerState;
+          analogWrite(BED_ROOM_LED0_PIN,(int)powerState*(int)((float)bedroom_brightness*2.55f));
+        }
+        else if(room==LIVING_ROOM) 
+        {
+          livingroomPowerOn = powerState;
+          analogWrite(LIVING_ROOM_LED0_PIN,(int)powerState*(int)((float)livingroom_brightness*2.55f));
+          analogWrite(LIVING_ROOM_LED1_PIN,(int)powerState*(int)((float)livingroom_brightness*2.55f));
+          SoftPWMSetPercent(LIVING_ROOM_LED2_PIN,(int)livingroomPowerOn*(int)livingroom_brightness);
+        }
+        break;
+      }
+```
 
 Code 6: Code for the handling the power command
 
-1 switch(command)
-
-2 {
-
-3  case CMD\_SELECT\_COLOR:
-3  {
-
-5 COLOR color = static\_cast <COLOR >(buffer[1]); 6 if(color == Red) WriteRGB(255,0,0);
-
-7 else if(color == Green) WriteRGB(0,255,0);
-
-8 else if(color == Blue) WriteRGB(0,0,255);
-
-9 else if(color == Cyan) WriteRGB(0,255,255);
-
-10 break; 11 }
+``` cpp
+    switch(command)
+    {
+      case CMD_SELECT_COLOR:
+      {
+        COLOR color = static_cast<COLOR>(buffer[1]);
+        if(color == Red) WriteRGB(255,0,0);
+        else if(color == Green) WriteRGB(0,255,0); 
+        else if(color == Blue) WriteRGB(0,0,255); 
+        else if(color == Cyan) WriteRGB(0,255,255); 
+        break;
+      }
+```}
 
 Code 7: Code for the handling the change/select color command
 
 The RGB LEDs are controlled through three different pins for each LED, and the pins were chosen to have PWM capability.
 
-3. Pin Connections
+### 6.2.3. Pin Connections
 
 Pin connections have been carefully selected and where the PWM pins were not enough, software emulated PWM functionality was used through the SoftPWM library.
 
-1 #define RGB\_LED\_R\_PIN 9 2 #define RGB\_LED\_G\_PIN 10 3 #define RGB\_LED\_B\_PIN 11
+``` cpp
+#define RGB_LED_R_PIN 9
+#define RGB_LED_G_PIN 10
+#define RGB_LED_B_PIN 11
 
-4 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.042.png)
+#define BED_ROOM_LED0_PIN 3
 
-5 #define BED\_ROOM\_LED0\_PIN 3
+#define LIVING_ROOM_LED0_PIN 5
+#define LIVING_ROOM_LED1_PIN 6
+#define LIVING_ROOM_LED2_PIN 12
 
-6 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.043.png)
-
-7 #define LIVING\_ROOM\_LED0\_PIN 5
-
-8 #define LIVING\_ROOM\_LED1\_PIN 6
-
-9 #define LIVING\_ROOM\_LED2\_PIN 12 10 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.044.png)
-
-11  #define DOOR\_SERVO\_PWM\_PIN 4
-11  #define WINDOW\_SERVO\_PWM\_PIN 8
+#define DOOR_SERVO_PWM_PIN 4
+#define WINDOW_SERVO_PWM_PIN 8
+```
 
 Code 8: Pin Definitions in the HomeDefinitions.h file
 
-4. Light Sensor and Sunlight Mode
+### 6.2.4. Light Sensor and Sunlight Mode
 
 Light sensor TEMT6000 outputs an analog signal which is then sampled on the built-in ADC present on the Arduino UNO.
 
@@ -734,7 +558,7 @@ Figure 5: TEMT6000 Light Sensor
 
 Figure 6: Sunlight Mode Lights
 
-3. Physical Design
+## 6.3. Physical Design
 
 Two cardboards were used in this project. One for smart home another one for hiding cables, breadboard, and UNO card. The wider cardboard is fully connected with the smart home as can be seen below.
 
@@ -772,8 +596,8 @@ Figure 11: Attached Window Micro Servo
 
 There is a yellow LED located in the bedroom. This LED has 2 legs, one of them is longer the other one is shorter. The shorter one is grounded on the breadboard. The longer one is located on a digital pin.
 
-7  Software Design
-1. Authentication
+# 7  Software Design
+## 7.1. Authentication
 
 Firebase has been used to provide communication between Arduino and the mobile application. It is a toolset to “build, improve, and grow the applica- tion.” The tools it gives cover a large portion of the services that developers would normally have to build themselves but many do not want to build because mostly rather be focused on the application experience itself. This includes things that can be listed as analytics, authentication, databases, configuration, file storage, push messaging, and the list goes on. The ser- vices are hosted in the cloud and scale with little to no effort on the part of the developer.
 
@@ -789,7 +613,7 @@ Figure 13: With the initializeApp (firebaseConfig) line, Firebase configura- tio
 
 Figure 14: registerRootComponent instance sets the initial React component to render natively in the app’s root React Native view on iOS, Android, and the web. The App component has been inserted into it.
 
-2. Redux
+## 7.2. Redux
 
 Redux is a state management tool that works as a centralized store which means it is the only place to access the state. Redux is also known as the single source of truth. The single source of truth is the only place where the application’s state lives and can be accessed.
 
@@ -815,13 +639,13 @@ Figure 18: In the loginSlice.js file, the createSlice procedure is used again. T
 
 Figure 19: Necessary libraries have been called in App.js to work the project properly. In the figure, The provider component makes the Redux store available to any nested components that need to access the Redux store. Since any React component in a React Native Redux app can be connected to the store, most applications will render a provider at the top level, with the entire app’s component tree inside of it.
 
-3. Packages
+## 7.3. Packages
 
 ![](./README/Aspose.Words.2a4a456d-4e9a-4ed1-a3e6-caec033267d0.060.png)
 
 The libraries that are used in this project are listed as UI, and Routing. Those are as follows:
 
-1. UI Libraries
+### 7.3.1. UI Libraries
 
 react-native-radio-buttons-group: It is a basic React Native li- brary that contains radio buttons.
 
@@ -841,7 +665,7 @@ react-native-community/slider: React Native component used to select a single va
 
 react-native-dropdown-select-list: It is a library that bunch of select list options inserted into a single select list bar that shows all select lists when it has been clicked.
 
-2. Routing Libraries
+### 7.3.2. Routing Libraries
 
 react-navigation/native: React Navigation is made up of some core utilities and those are used by navigators to create the navigation structure in the app.
 
@@ -849,7 +673,7 @@ react-navigation/native-stack: Stack navigator for React Native using native pri
 
 react-navigation/stack: Stack navigator provides a way for app to       transition between screens where each new screen is placed on top of a stack.
 
-3. Other Libraries
+### 7.3.3. Other Libraries
 
 react-native-async-storage/async-storage: An asynchronous, un- encrypted, persistent, key-value storage system for React Native.
 
@@ -875,7 +699,7 @@ redux-saga: It is a middleware library used to allow a Redux store to asynchrono
 
 lodash: It is a JavaScript library, which focuses on delivering high- performing react native functions.
 
-8  Results & Discussions
+# 8  Results & Discussions
 
 The existing functions work as expected if the hardware in the house supports it. So far users can interact with light via switch buttons, door via password change and open-close switches, and window open-close switches. The most valuable contribution would be solving the bugs of the existing system and making necessary adjustments to the software architecture of both client and server applications, thus it provides a necessary resiliency to expand the feature set in a reliable way. On the other hand, if it is decided to add new functions as a primary goal those can be adding a security system that alarms the user in case of emergency like a fire, burglary, gas leak, etc. However, the user should connect to the home server in a different way other than typing the IP address.
 
@@ -884,24 +708,19 @@ As a new feature set to follow sustainability goals, new devices can be built in
 - Choose the right time to use machines that are used in chores, the right time may include that the battery supplied by the clean energy source is available
 - Adjustment of temperature by given parameters like estimated time spent in the house. It can be implemented in a way that doesn’t waste energy.
 - If necessary devices are affordable and can be installed on the server, some of the chores can be autonomous. As an example, a coffee machine serves fresh coffee at a specific time of the day.
-9  Conclusion
+  
+# 9  Conclusion
 
 Industrial Revolution, in modern history, the process of change from an agrarian and handicraft economy to one dominated by industry and ma- chine manufacturing. These technological changes introduced novel ways of working and living and fundamentally transformed society. [1] Although the necessities of living in the industrialized world give people the chance to live together with technology, the psychological damage caused by this tempo can be high. It was aimed to increase the moments that people can spare for themselves. On the other hand, in our world where energy consumption is increasing and continues to increase day by day and wastes poisoning nat- ural resources, this project can lead to energy savings, especially in the use of factories, since it has a feature such as automatic sunlight. However, of course, this project should become widespread and an indispensable part of daily life so that its benefits can be fully seen.
 
-References
+# References
 
 1. https://www.britannica.com/event/Industrial-Revolution
-1. Devices are ordered and images are retrieved from https://www.direnc.net
-1. Code images are generated at https://carbon.now.sh
-1. Mobile application packages are installed from https://www.npmjs.com
-1. Mobile application codes are retrieved from https://github.com/OrcunSelbasan/smarthome
-1. Programming reference for the Win32 API - Win32 apps. (n.d.). Mi- crosoft Learn. https://learn.microsoft.com/en-us/windows/win32/api/
-1. Arduino Docs. (n.d.). Arduino Documentation. https://docs.arduino.cc/
-1. Boost.Beast Documentation. (n.d.).
-
-https://www.boost.org/doc/libs/1~~ 70~~ 0/libs/beast/doc/html/index.html/
-
-9. Boost.Asio - 1.75.0. (n.d.).
-
-https://www.boost.org/doc/libs/1~~ 75~~ 0/doc/html/boostasio.html
-38
+2. Devices are ordered and images are retrieved from https://www.direnc.net
+3. Code images are generated at https://carbon.now.sh
+4. Mobile application packages are installed from https://www.npmjs.com
+5. Mobile application codes are retrieved from https://github.com/OrcunSelbasan/smarthome
+6. Programming reference for the Win32 API - Win32 apps. (n.d.). Mi- crosoft Learn. https://learn.microsoft.com/en-us/windows/win32/api/
+7. Arduino Docs. (n.d.). Arduino Documentation. https://docs.arduino.cc/
+8. Boost.Beast Documentation. (n.d.). https://www.boost.org/doc/libs/1__70__0/libs/beast/doc/html/index.html/
+9. Boost.Asio - 1.75.0. (n.d.). https://www.boost.org/doc/libs/1__75__0/doc/html/boostasio.html
