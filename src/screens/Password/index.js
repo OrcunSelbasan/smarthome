@@ -7,6 +7,9 @@ import {
   View,
   TextInput as TI,
   Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useSelector } from "react-redux";
@@ -23,13 +26,13 @@ export default function Password() {
   const [newPA, setNewPA] = useState();
   const [loginP, setLoginP] = useState();
 
-  const ip = useSelector(state => state.login.ipAddress)
+  const ip = useSelector((state) => state.login.ipAddress);
 
   function reset() {
-    setNewPA("")
-    setOldP("")
-    setLoginP("")
-    setNewP("")
+    setNewPA("");
+    setOldP("");
+    setLoginP("");
+    setNewP("");
   }
 
   return (
@@ -67,7 +70,7 @@ export default function Password() {
                   typeof parseInt(loginP),
                   loginP
                 );
-                reset()
+                reset();
                 return setModalVisible1(!modalVisible1);
               }}
             >
@@ -76,7 +79,7 @@ export default function Password() {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
-                setModalVisible1(false)
+                setModalVisible1(false);
               }}
             >
               <Text style={styles.textStyle}>Close</Text>
@@ -124,7 +127,7 @@ export default function Password() {
                   typeof parseInt(loginP),
                   loginP
                 );
-                reset()
+                reset();
                 return setModalVisible2(!modalVisible2);
               }}
             >
@@ -133,7 +136,7 @@ export default function Password() {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
-                setModalVisible2(false)
+                setModalVisible2(false);
               }}
             >
               <Text style={styles.textStyle}>Close</Text>
@@ -153,65 +156,74 @@ export default function Password() {
       </Pressable>
 
       <Text style={styles.pageTitle}>Door Password Change</Text>
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
-        label="Old Password"
-        maxLength={6}
-        keyboardType="number-pad"
-        value={oldP}
-        onChangeText={(val) => setOldP(val)}
-      />
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
-        label="New Password"
-        maxLength={6}
-        value={newP}
-        keyboardType="number-pad"
-        onChangeText={(val) => setNewP(val)}
-      />
-      <TextInput
-        style={styles.input}
-        secureTextEntry={true}
-        label="New Password Again"
-        maxLength={6}
-        value={newPA}
-        keyboardType="number-pad"
-        onChangeText={(val) => setNewPA(val)}
-      />
-      <Pressable
-        style={[
-          styles.button,
-          styles.buttonOpen,
-          { backgroundColor: "#5857F3", paddingVertical: 10 },
-        ]}
-        onPress={() => {
-          if (newP === newPA && oldP !== newP) {
-            togglePassword(
-              "http://" + ip + ":52170" + "/password",
-              parseInt(oldP),
-              parseInt(newP)
-            );
-            console.log(
-              "Request send to change the door password",
-              typeof parseInt(oldP),
-              oldP,
-              typeof parseInt(newP),
-              newP
-            );
-          } else {
-            Alert.alert(
-              "Error",
-              "Passwords do not match! Also new password cannot be equal to old password.",
-              [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-            );
-          }
-          reset()
-        }}
-      >
-        <Text style={styles.textStyle}>Save</Text>
-      </Pressable>
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            label="Old Password"
+            maxLength={6}
+            keyboardType="number-pad"
+            value={oldP}
+            onChangeText={(val) => setOldP(val)}
+          />
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            label="New Password"
+            maxLength={6}
+            value={newP}
+            keyboardType="number-pad"
+            onChangeText={(val) => setNewP(val)}
+          />
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            label="New Password Again"
+            maxLength={6}
+            value={newPA}
+            keyboardType="number-pad"
+            onChangeText={(val) => setNewPA(val)}
+          />
+        </TouchableWithoutFeedback>
+        <Pressable
+          style={[
+            styles.button,
+            styles.buttonOpen,
+            { backgroundColor: "#5857F3", paddingVertical: 10 },
+          ]}
+          onPress={() => {
+            if (newP === newPA && oldP !== newP) {
+              togglePassword(
+                "http://" + ip + ":52170" + "/password",
+                parseInt(oldP),
+                parseInt(newP)
+              );
+              console.log(
+                "Request send to change the door password",
+                typeof parseInt(oldP),
+                oldP,
+                typeof parseInt(newP),
+                newP
+              );
+            } else {
+              Alert.alert(
+                "Error",
+                "Passwords do not match! Also new password cannot be equal to old password.",
+                [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+              );
+            }
+            reset();
+          }}
+        >
+          <Text style={styles.textStyle}>Save</Text>
+        </Pressable>
+        <View style={{ height: 150 }}></View>
+      </ScrollView>
     </View>
   );
 }
